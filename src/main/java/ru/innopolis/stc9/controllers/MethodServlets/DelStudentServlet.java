@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class DelStudentServlet extends HttpServlet {
-    private static Logger logger = Logger.getLogger(AddStudentServlet.class);
+    private static Logger logger = Logger.getLogger(DelStudentServlet.class);
     private StudentService studentService = new StudentService();
 
     @Override

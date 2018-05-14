@@ -85,6 +85,15 @@
         <servlet-name>DefaultServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddCourseServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.AddCourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCourseServlet</servlet-name>
+        <url-pattern>/method/add_course</url-pattern>
+    </servlet-mapping>
 
     <!--Filters-->
 

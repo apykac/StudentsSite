@@ -47,14 +47,10 @@ r
 Bsrc/main/java/ru/innopolis/stc9/controllers/filters/LogFilter.java,6\f\6f8059e4054214b083940f9bb025fa57da90448e
 p
 @src/main/java/ru/innopolis/stc9/controllers/LoginController.java,c\0\c010d9bc5a7a41bae4b7979d669c1c981f3db757
-r
-Bsrc/main/java/ru/innopolis/stc9/controllers/AddStudentServlet.java,a\2\a21cd7df2fc0504c01008bbae65363d92ed91013
 N
 src/main/webapp/error_page.jsp,e\9\e9af51fe6eac8b4a2ce370cd9af11ac437fe6a00
 o
 ?src/main/java/ru/innopolis/stc9/controllers/ServiceServlet.java,0\6\06f40047a61e7326ddbec7ef3cd0f397e8d6fe74
-{
-Ksrc/main/java/ru/innopolis/stc9/controllers/PrintStudentsToPageServlet.java,f\2\f25c5abccc5f1196ac77945e48599f51cd6cdd08
 r
 Bsrc/main/java/ru/innopolis/stc9/controllers/ConstantContainer.java,d\0\d051e33c8b427c1d7fb5b55efce3c25bf4d211a4
 U
@@ -77,3 +73,9 @@ l
 <src/main/java/ru/innopolis/stc9/services/StudentService.java,b\7\b7305ab335eeb7885230762e1e0f6468da0a5d33
 
 Qsrc/main/java/ru/innopolis/stc9/controllers/MethodServlets/DelStudentServlet.java,3\8\384f468f594dfa308505ad8d65d9d0cc538038ff
+€
+Psrc/main/java/ru/innopolis/stc9/controllers/MethodServlets/AddCourseServlet.java,7\b\7b447fd5560867482b0b35ce79af37b6fd12be83
+k
+;src/main/java/ru/innopolis/stc9/services/CourseService.java,d\1\d115dd0224c0522bc3d9f92e25cf8b6336ce75c1
+j
+:src/main/java/ru/innopolis/stc9/services/UsersService.java,a\d\ad1f0880e8a95740ada6195a4f7c74238f2fb99c

@@ -16,10 +16,10 @@ public class AdminPageServlet extends HttpServlet {
         try {
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
-            if ((Integer)req.getSession().getAttribute(ConstantContainer.ROLE) == 1)
+            if ((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) == 1)
                 req.getRequestDispatcher("/admin_page.jsp").forward(req, resp);
             else
-                resp.sendRedirect(req.getContextPath()+"/error_page.jsp?error_message=permissionError");
+                resp.sendRedirect(req.getContextPath() + "/error_page.jsp?error_message=permissionError");
         } catch (IOException | ServletException e) {
             logger.error(e.getMessage());
         }

@@ -32,6 +32,10 @@
             displayErrMsg = "Некорректный ввод ID студента";
             pathToGo = "method?method=del_student";
         }
+        if (errorMessage.equals("addCourseError")) {
+            displayErrMsg = "Неккоректное название курса";
+            pathToGo = "method?method=add_course";
+        }
     %>
     <h1><%=displayErrMsg%></h1>
     <br>

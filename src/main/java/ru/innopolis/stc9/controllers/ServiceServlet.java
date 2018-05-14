@@ -17,8 +17,10 @@ public class ServiceServlet extends HttpServlet {
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             String param = req.getParameter("method");
-            if ((Integer)req.getSession().getAttribute(ConstantContainer.ROLE) >2 )
-                resp.sendRedirect(req.getContextPath()+"/error_page.jsp?error_message=permissionError");
+            if ((Integer)req.getSession().getAttribute(ConstantContainer.ROLE) >2 ) {
+                resp.sendRedirect(req.getContextPath() + "/error_page.jsp?error_message=permissionError");
+                return;
+            }
             if (param.equals("get_students")) {
                 req.getRequestDispatcher("/method/get_students.jsp").forward(req, resp);
                 return;
@@ -29,6 +31,10 @@ public class ServiceServlet extends HttpServlet {
             }
             if (param.equals("del_student")) {
                 req.getRequestDispatcher("/method/del_student.jsp").forward(req,resp);
+                return;
+            }
+            if (param.equals("add_course")) {
+                req.getRequestDispatcher("/method/add_course.jsp").forward(req,resp);
                 return;
             }
         } catch (IOException | ServletException e) {
