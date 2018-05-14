@@ -55,8 +55,6 @@ r
 Bsrc/main/java/ru/innopolis/stc9/controllers/ConstantContainer.java,d\0\d051e33c8b427c1d7fb5b55efce3c25bf4d211a4
 U
 %src/main/webapp/method/add_course.jsp,0\a\0aa52404e064cf067db89d429b1269f37cf83e88
-S
-#src/main/webapp/method/add mark.jsp,8\2\82db9b46b29e583c6d66948db415b8ef5bb954f5
 V
 &src/main/webapp/method/add_student.jsp,b\a\ba22cb534711b20cec5f206bbfdff94088e9da8e
 U
@@ -79,3 +77,7 @@ k
 ;src/main/java/ru/innopolis/stc9/services/CourseService.java,d\1\d115dd0224c0522bc3d9f92e25cf8b6336ce75c1
 j
 :src/main/java/ru/innopolis/stc9/services/UsersService.java,a\d\ad1f0880e8a95740ada6195a4f7c74238f2fb99c
+U
+%src/main/webapp/method/del_course.jsp,f\d\fd5e9fdf2d450fca8912280681d86ad9e7bc013d
+€
+Psrc/main/java/ru/innopolis/stc9/controllers/MethodServlets/DelCourseServlet.java,e\9\e90e676d10e470e91637ae855b9ec338688cd362

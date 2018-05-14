@@ -76,6 +76,15 @@
         <servlet-name>DelStudentServlet</servlet-name>
         <url-pattern>/method/del_student</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DelCourseServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.DelCourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelCourseServlet</servlet-name>
+        <url-pattern>/method/del_course</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>DefaultServlet</servlet-name>

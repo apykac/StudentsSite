@@ -17,7 +17,7 @@ public class ServiceServlet extends HttpServlet {
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             String param = req.getParameter("method");
-            if ((Integer)req.getSession().getAttribute(ConstantContainer.ROLE) >2 ) {
+            if ((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) > 2) {
                 resp.sendRedirect(req.getContextPath() + "/error_page.jsp?error_message=permissionError");
                 return;
             }
@@ -26,15 +26,19 @@ public class ServiceServlet extends HttpServlet {
                 return;
             }
             if (param.equals("add_student")) {
-                req.getRequestDispatcher("/method/add_student.jsp").forward(req,resp);
+                req.getRequestDispatcher("/method/add_student.jsp").forward(req, resp);
                 return;
             }
             if (param.equals("del_student")) {
-                req.getRequestDispatcher("/method/del_student.jsp").forward(req,resp);
+                req.getRequestDispatcher("/method/del_student.jsp").forward(req, resp);
                 return;
             }
             if (param.equals("add_course")) {
-                req.getRequestDispatcher("/method/add_course.jsp").forward(req,resp);
+                req.getRequestDispatcher("/method/add_course.jsp").forward(req, resp);
+                return;
+            }
+            if (param.equals("del_course")) {
+                req.getRequestDispatcher("/method/del_course.jsp").forward(req, resp);
                 return;
             }
         } catch (IOException | ServletException e) {

@@ -12,4 +12,8 @@ public class CourseService {
     public void addCourse(String courseName) {
         coursesDAO.addCourse(new Course(0,courseName));
     }
+
+    public void delCourse(Integer courseId) {
+        coursesDAO.deleteCourseById(courseId);
+    }
 }

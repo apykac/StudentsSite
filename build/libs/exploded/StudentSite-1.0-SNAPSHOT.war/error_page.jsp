@@ -29,12 +29,16 @@
             pathToGo = "method?method=add_student";
         }
         if (errorMessage.equals("delStudentError")) {
-            displayErrMsg = "Некорректный ввод ID студента";
+            displayErrMsg = "Некорректный ID студента";
             pathToGo = "method?method=del_student";
         }
         if (errorMessage.equals("addCourseError")) {
             displayErrMsg = "Неккоректное название курса";
             pathToGo = "method?method=add_course";
+        }
+        if (errorMessage.equals("delCourseError")) {
+            displayErrMsg = "Неккоректный ID курса";
+            pathToGo = "method?method=del_course";
         }
     %>
     <h1><%=displayErrMsg%></h1>
