@@ -52,7 +52,7 @@
     
     <servlet>
         <servlet-name>PrintStudentsToPageServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.PrintStudentsToPageServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.PrintStudentsToPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PrintStudentsToPageServlet</servlet-name>
@@ -61,11 +61,20 @@
 
     <servlet>
         <servlet-name>AddStudentServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.AddStudentServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.AddStudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddStudentServlet</servlet-name>
         <url-pattern>/method/add_student</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DelStudentServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.DelStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelStudentServlet</servlet-name>
+        <url-pattern>/method/del_student</url-pattern>
     </servlet-mapping>
 
     <servlet>

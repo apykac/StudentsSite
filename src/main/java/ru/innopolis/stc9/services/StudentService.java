@@ -16,4 +16,8 @@ public class StudentService {
     public void addStudent(String firstName, String secondName, String middleName, Integer courseId) {
         studentsDAO.addStudent(new Student(-1, firstName, secondName, middleName, courseId));
     }
+
+    public void delStudent(Integer studentId) {
+        studentsDAO.deleteStudentById(studentId);
+    }
 }

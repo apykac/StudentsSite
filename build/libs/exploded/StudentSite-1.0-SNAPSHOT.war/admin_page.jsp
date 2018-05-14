@@ -16,5 +16,7 @@
     <br>
     <a href="${pageContext.request.contextPath}/method?method=add_student">Добавить студента</a>
     <br>
+    <a href="${pageContext.request.contextPath}/method?method=del_student">Удалить студента</a>
+    <br>
 </body>
 </html>

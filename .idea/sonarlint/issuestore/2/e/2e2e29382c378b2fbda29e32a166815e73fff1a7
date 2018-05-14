@@ -1,0 +1,7 @@
+
+Msquid:S1068"*Remove this unused "logger" private field.(ªç“£ıÿÿÿÿ8Éƒ—øµ,
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒÀ“œıÿÿÿÿ8Üˆùµ,
+Qsquid:S1989"3Add a "try/catch" block for "setCharacterEncoding".(ø·­½8Éƒ—øµ,
+Isquid:S1989"+Add a "try/catch" block for "sendRedirect".(‡¸‘»8²øÚøµ,
+Dsquid:S1989"&Add a "try/catch" block for "forward".(İ½‰•8Éƒ—øµ,
+Dsquid:S1989"&Add a "try/catch" block for "forward".(İ½‰•8Éƒ—øµ,

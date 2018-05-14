@@ -1,11 +1,11 @@
-package ru.innopolis.stc9.controllers;
+package ru.innopolis.stc9.controllers.MethodServlets;
 
 import org.apache.log4j.Logger;
+import ru.innopolis.stc9.controllers.ConstantContainer;
 import ru.innopolis.stc9.pojo.Student;
 import ru.innopolis.stc9.services.StudentService;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +20,8 @@ public class PrintStudentsToPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding(ConstantContainer.UTF8);
         resp.setCharacterEncoding(ConstantContainer.UTF8);
+        if((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) >2 )
+            resp.sendRedirect(req.getContextPath()+"/error_page.jsp?error_message=permissionError");
         List<Student> students = studentService.getStudentByNameFIO(
                 req.getParameter("firstName").equals("") ? null : req.getParameter("firstName"),
                 req.getParameter("secondName").equals("") ? null : req.getParameter("secondName"),

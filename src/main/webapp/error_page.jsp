@@ -24,6 +24,14 @@
             displayErrMsg = "Недостаточно прав";
             pathToGo = "defaultmenu";
         }
+        if (errorMessage.equals("addStudentError")) {
+            displayErrMsg = "Некорректный ввод данных студента";
+            pathToGo = "method?method=add_student";
+        }
+        if (errorMessage.equals("delStudentError")) {
+            displayErrMsg = "Некорректный ввод ID студента";
+            pathToGo = "method?method=del_student";
+        }
     %>
     <h1><%=displayErrMsg%></h1>
     <br>
