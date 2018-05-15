@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: APYKAC
-  Date: 14.05.2018
-  Time: 3:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +5,7 @@
     <title>Вывод студентов</title>
 </head>
 <body>
-    <p>Введите данные студента или оставьте пустыми поля которые вы не знаете</p>
+    <p>Введите данные студента</p>
     <form action="${pageContext.request.contextPath}/method/get_students_to_page" method="post">
         <label>Имя: <input type="text" name="firstName"></label>
         <br>
@@ -22,5 +15,10 @@
         <br>
         <input type="submit" name="Вывести студентов">
     </form>
+    <i>
+        Если оставить одно из полей не заполненым то автоматически включает диапозон поиска студентов,
+        <br>
+        будут выведенны все студенты с задаными параметрами имени.
+    </i>
 </body>
 </html>

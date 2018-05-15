@@ -24,8 +24,6 @@ public class PrintStudentsToPageServlet extends HttpServlet {
         }
         req.setCharacterEncoding(ConstantContainer.UTF8);
         resp.setCharacterEncoding(ConstantContainer.UTF8);
-        if((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) >2 )
-            resp.sendRedirect(req.getContextPath()+"/error_page.jsp?error_message=permissionError");
         List<Student> students = studentService.getStudentByNameFIO(
                 req.getParameter("firstName").equals("") ? null : req.getParameter("firstName"),
                 req.getParameter("secondName").equals("") ? null : req.getParameter("secondName"),

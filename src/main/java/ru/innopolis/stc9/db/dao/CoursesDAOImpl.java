@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CoursesDAOImpl implements CoursesDAO {
     private static Logger logger = Logger.getLogger(CoursesDAOImpl.class);
@@ -85,5 +87,36 @@ public class CoursesDAOImpl implements CoursesDAO {
             logger.error("Deleting a \"course\" failed: " + e.getMessage(), e);
             return false;
         }
+    }
+
+    @Override
+    public List<Course> getAllCoursesByName(String courseName) {
+        List<Course> result = new ArrayList<>();
+        logger.info("Getting an \"courses\" by name: " + courseName);
+        try (Connection connection = connectionManager.getConnection()) {
+            PreparedStatement statement = rightStatment(courseName, connection);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Course courses = new Course(resultSet.getInt("id"),
+                        resultSet.getString("name"));
+                result.add(courses);
+            }
+        } catch (SQLException e) {
+            logger.info("Getting an \"courses\" by name failed: " + e.getMessage(), e);
+            return result;
+        }
+        logger.info("Get all \"courses\" by name successfully");
+        return result;
+    }
+
+    private PreparedStatement rightStatment(String courseName, Connection connection) throws SQLException {
+        PreparedStatement statement;
+        if (courseName == null) {
+            statement = connection.prepareStatement("SELECT * FROM courses");
+            return statement;
+        }
+        statement = connection.prepareStatement("SELECT * FROM courses WHERE \"name\"=?");
+        statement.setString(1, courseName);
+        return statement;
     }
 }

@@ -12,7 +12,9 @@
 </head>
 <body>
     <p>Выберите желаемое действие</p>
-    <a href="${pageContext.request.contextPath}/method?method=get_students">Вывод стедентов по ФИО (если нет данных то выведуться все студенты)</a>
+    <a href="${pageContext.request.contextPath}/method?method=get_students">Вывод стедентов по ФИО</a>
+    <br>
+    <a href="${pageContext.request.contextPath}/method?method=get_courses">Вывод курсов по названию</a>
     <br>
     <a href="${pageContext.request.contextPath}/method?method=add_student">Добавить студента</a>
     <br>

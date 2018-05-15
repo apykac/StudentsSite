@@ -21,7 +21,7 @@ public class ServiceServlet extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/error_page.jsp?error_message=permissionError");
                 return;
             }
-            if (param.equals("get_students")) {
+       /*     if (param.equals("get_students")) {
                 req.getRequestDispatcher("/method/get_students.jsp").forward(req, resp);
                 return;
             }
@@ -40,6 +40,26 @@ public class ServiceServlet extends HttpServlet {
             if (param.equals("del_course")) {
                 req.getRequestDispatcher("/method/del_course.jsp").forward(req, resp);
                 return;
+            }*/
+            switch (param) {
+                case "get_students":
+                    req.getRequestDispatcher("/method/get_students.jsp").forward(req, resp);
+                    return;
+                case "get_courses":
+                    req.getRequestDispatcher("/method/get_courses.jsp").forward(req, resp);
+                    return;
+                case "add_student":
+                    req.getRequestDispatcher("/method/add_student.jsp").forward(req, resp);
+                    return;
+                case "del_student":
+                    req.getRequestDispatcher("/method/del_student.jsp").forward(req, resp);
+                    return;
+                case "add_course":
+                    req.getRequestDispatcher("/method/add_course.jsp").forward(req, resp);
+                    return;
+                case "del_course":
+                    req.getRequestDispatcher("/method/del_course.jsp").forward(req, resp);
+                    return;
             }
         } catch (IOException | ServletException e) {
             logger.error(e.getMessage());

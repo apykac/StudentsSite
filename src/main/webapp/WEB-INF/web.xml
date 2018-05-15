@@ -58,6 +58,15 @@
         <servlet-name>PrintStudentsToPageServlet</servlet-name>
         <url-pattern>/method/get_students_to_page</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>PrintCoursesToPageServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.PrintCoursesToPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PrintCoursesToPageServlet</servlet-name>
+        <url-pattern>/method/get_courses_to_page</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>AddStudentServlet</servlet-name>

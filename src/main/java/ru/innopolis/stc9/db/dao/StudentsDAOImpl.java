@@ -116,8 +116,7 @@ public class StudentsDAOImpl implements StudentsDAO {
                         resultSet.getString("firstName"),
                         resultSet.getString("secondName"),
                         resultSet.getString("middleName"),
-                        resultSet.getInt("course")
-                );
+                        resultSet.getInt("course"));
                 result.add(student);
             }
         } catch (SQLException e) {
