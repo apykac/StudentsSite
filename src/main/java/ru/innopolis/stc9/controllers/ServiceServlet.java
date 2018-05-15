@@ -18,29 +18,9 @@ public class ServiceServlet extends HttpServlet {
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             String param = req.getParameter("method");
             if ((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) > 2) {
-                resp.sendRedirect(req.getContextPath() + "/error_page.jsp?error_message=permissionError");
+                resp.sendRedirect(req.getContextPath() + "/error?error_message=permissionError");
                 return;
             }
-       /*     if (param.equals("get_students")) {
-                req.getRequestDispatcher("/method/get_students.jsp").forward(req, resp);
-                return;
-            }
-            if (param.equals("add_student")) {
-                req.getRequestDispatcher("/method/add_student.jsp").forward(req, resp);
-                return;
-            }
-            if (param.equals("del_student")) {
-                req.getRequestDispatcher("/method/del_student.jsp").forward(req, resp);
-                return;
-            }
-            if (param.equals("add_course")) {
-                req.getRequestDispatcher("/method/add_course.jsp").forward(req, resp);
-                return;
-            }
-            if (param.equals("del_course")) {
-                req.getRequestDispatcher("/method/del_course.jsp").forward(req, resp);
-                return;
-            }*/
             switch (param) {
                 case "get_students":
                     req.getRequestDispatcher("/method/get_students.jsp").forward(req, resp);

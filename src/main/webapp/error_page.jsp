@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: APYKAC
-  Date: 13.05.2018
-  Time: 23:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,29 +9,15 @@
         String errorMessage = request.getParameter("error_message");
         String displayErrMsg = "";
         String pathToGo = "";
-        if (errorMessage.equals("authorisationError")) {
-            displayErrMsg = "Ошибка авторизации, попробуйте авторизоваться снова";
-            pathToGo = "login";
-        }
-        if (errorMessage.equals("permissionError")) {
-            displayErrMsg = "Недостаточно прав";
-            pathToGo = "defaultmenu";
-        }
-        if (errorMessage.equals("addStudentError")) {
-            displayErrMsg = "Некорректный ввод данных студента";
-            pathToGo = "method?method=add_student";
-        }
-        if (errorMessage.equals("delStudentError")) {
-            displayErrMsg = "Некорректный ID студента";
-            pathToGo = "method?method=del_student";
-        }
-        if (errorMessage.equals("addCourseError")) {
-            displayErrMsg = "Неккоректное название курса";
-            pathToGo = "method?method=add_course";
-        }
-        if (errorMessage.equals("delCourseError")) {
-            displayErrMsg = "Неккоректный ID курса";
-            pathToGo = "method?method=del_course";
+        switch (errorMessage) {
+            case "authorisationError":
+                displayErrMsg = "Ошибка авторизации, попробуйте авторизоваться снова";
+                pathToGo = "login";
+                break;
+            case "permissionError":
+                displayErrMsg = "Недостаточно прав";
+                pathToGo = "default";
+                break;
         }
     %>
     <h1><%=displayErrMsg%></h1>

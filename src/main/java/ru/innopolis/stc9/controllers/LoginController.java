@@ -16,6 +16,16 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            if ((req.getParameter("logout") != null) && req.getParameter("logout").equals("true")) {
+                req.getSession().invalidate();
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            if ((req.getSession().getAttribute(ConstantContainer.ROLE) != null) &&
+                    ((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) <= 2)) {
+                resp.sendRedirect(req.getContextPath() + "/defaultmenu");
+                return;
+            }
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
@@ -37,7 +47,7 @@ public class LoginController extends HttpServlet {
                 req.getSession().setAttribute(ConstantContainer.ROLE, userResult);
                 resp.sendRedirect(req.getContextPath() + "/login_valid");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/error_page.jsp?error_message=authorisationError");
+                resp.sendRedirect(req.getContextPath() + "/error?error_message=authorisationError");
             }
         } catch (IOException e) {
             logger.error(e.getMessage());

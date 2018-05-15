@@ -24,6 +24,6 @@
         <input type="submit" value="Войти">
     </form>
     <br>
-    <a href="guest_page.jsp">Зайти как гость</a>
+    <a href="${pageContext.request.contextPath}/guest_page">Зайти как гость</a>
 </body>
 </html>

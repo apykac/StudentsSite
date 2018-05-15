@@ -5,11 +5,21 @@ import ru.innopolis.stc9.db.dao.CoursesDAO;
 import ru.innopolis.stc9.db.dao.CoursesDAOImpl;
 import ru.innopolis.stc9.pojo.Course;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseService {
     private static Logger logger = Logger.getLogger(CourseService.class);
     private static CoursesDAO coursesDAO = new CoursesDAOImpl();
+
+    public List<Object> getCourses (String courseName) {
+        List<Object> result = new ArrayList<>();
+        List<Course> courses = getCoursesByName(courseName);
+        for (Course course: courses) {
+            result.add(course);
+        }
+        return result;
+    }
 
     public List<Course> getCoursesByName(String courseName) {
         return coursesDAO.getAllCoursesByName(courseName);

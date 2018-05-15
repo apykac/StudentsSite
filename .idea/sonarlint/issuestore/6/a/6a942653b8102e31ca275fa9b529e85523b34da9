@@ -1,10 +1,0 @@
-
-Qsquid:S1989"3Add a "try/catch" block for "setCharacterEncoding".(ø·­½8°Å—øµ,
-~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒÀ“œıÿÿÿÿ8Û†ˆùµ,
-Isquid:S1989("+Add a "try/catch" block for "sendRedirect".(˜ò™ú8°Å—øµ,
-Hsquid:S1989$"+Add a "try/catch" block for "sendRedirect".(ŒV8¼ ùµ,
-Isquid:S1989"+Add a "try/catch" block for "sendRedirect".(‡¸‘»8¢¹½úµ,
-usquid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(ñÛª
-8°Å—øµ,
-Hsquid:S1989"+Add a "try/catch" block for "sendRedirect".(ŒV8…Š·ùµ,
-Msquid:S1068"*Remove this unused "logger" private field.(ñìüÿÿÿÿ8°Å—øµ,

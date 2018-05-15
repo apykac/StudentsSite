@@ -4,12 +4,22 @@ import ru.innopolis.stc9.db.dao.StudentsDAO;
 import ru.innopolis.stc9.db.dao.StudentsDAOImpl;
 import ru.innopolis.stc9.pojo.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentService {
     private static StudentsDAO studentsDAO = new StudentsDAOImpl();
 
-    public List<Student> getStudentByNameFIO(String firstName, String secondName, String middleName) {
+    public List<Object> getStudents (String firstName, String secondName, String middleName) {
+        List<Object> result = new ArrayList<>();
+        List<Student> students = getStudentsByNameFIO(firstName, secondName, middleName);
+        for (Student student: students) {
+            result.add(student);
+        }
+        return result;
+    }
+
+    public List<Student> getStudentsByNameFIO(String firstName, String secondName, String middleName) {
         return studentsDAO.getAllStudentsByName(firstName, secondName, middleName);
     }
 

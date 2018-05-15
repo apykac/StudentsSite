@@ -5,8 +5,9 @@
     <title>Вывод студентов</title>
 </head>
 <body>
+    <%@include file="../pieces/logout_panel.jsp"%>
     <p>Введите данные студента</p>
-    <form action="${pageContext.request.contextPath}/method/get_students_to_page" method="post">
+    <form action="${pageContext.request.contextPath}/method/to_page" method="post">
         <label>Имя: <input type="text" name="firstName"></label>
         <br>
         <label>Фамилия: <input type="text" name="secondName"></label>
@@ -14,6 +15,7 @@
         <label>Отчество: <input type="text" name="middleName"></label>
         <br>
         <input type="submit" name="Вывести студентов">
+        <input type="hidden" name="methodType" value="students_to_page">
     </form>
     <i>
         Если оставить одно из полей не заполненым то автоматически включает диапозон поиска студентов,

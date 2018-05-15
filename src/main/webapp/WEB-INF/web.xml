@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <!--Servlets-->
-    
+    <!--Обработка авторизации пользователя-->
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>ru.innopolis.stc9.controllers.LoginController</servlet-class>
@@ -13,7 +13,7 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-    
+    <!--Админка-->
     <servlet>
         <servlet-name>AdminPageServlet</servlet-name>
         <servlet-class>ru.innopolis.stc9.controllers.AdminPageServlet</servlet-class>
@@ -22,7 +22,7 @@
         <servlet-name>AdminPageServlet</servlet-name>
         <url-pattern>/admin_page</url-pattern>
     </servlet-mapping>
-
+    <!--Страница обычного пользователя-->
     <servlet>
         <servlet-name>UserPageServlet</servlet-name>
         <servlet-class>ru.innopolis.stc9.controllers.UserPageServlet</servlet-class>
@@ -31,7 +31,7 @@
         <servlet-name>UserPageServlet</servlet-name>
         <url-pattern>/user_page</url-pattern>
     </servlet-mapping>
-    
+    <!--Страницы гостя-->
     <servlet>
         <servlet-name>GuestServlet</servlet-name>
         <servlet-class>ru.innopolis.stc9.controllers.GuestPageServlet</servlet-class>
@@ -40,7 +40,7 @@
         <servlet-name>GuestServlet</servlet-name>
         <url-pattern>/guest_page</url-pattern>
     </servlet-mapping>
-
+    <!--Сервлет распределения запросов пользователя, зависит от запрошенного метода-->
     <servlet>
         <servlet-name>ServiceServlet</servlet-name>
         <servlet-class>ru.innopolis.stc9.controllers.ServiceServlet</servlet-class>
@@ -49,52 +49,34 @@
         <servlet-name>ServiceServlet</servlet-name>
         <url-pattern>/method</url-pattern>
     </servlet-mapping>
-    
+    <!--Сервлет вывода данных на страницу, выбирает тип даных сам-->
     <servlet>
-        <servlet-name>PrintStudentsToPageServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.PrintStudentsToPageServlet</servlet-class>
+        <servlet-name>PrintToPageServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.PrintToPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PrintStudentsToPageServlet</servlet-name>
-        <url-pattern>/method/get_students_to_page</url-pattern>
+        <servlet-name>PrintToPageServlet</servlet-name>
+        <url-pattern>/method/to_page</url-pattern>
     </servlet-mapping>
-    
+    <!--Сервлет добавление данных в БД, доступно только для администратора-->
     <servlet>
-        <servlet-name>PrintCoursesToPageServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.PrintCoursesToPageServlet</servlet-class>
+        <servlet-name>AddDataServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.AddDataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PrintCoursesToPageServlet</servlet-name>
-        <url-pattern>/method/get_courses_to_page</url-pattern>
+        <servlet-name>AddDataServlet</servlet-name>
+        <url-pattern>/method/add_data</url-pattern>
     </servlet-mapping>
-
+    <!--Сервлет удаления данных из БД, доступно только для адмнистратора-->
     <servlet>
-        <servlet-name>AddStudentServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.AddStudentServlet</servlet-class>
+        <servlet-name>DelDataServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.DelDataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AddStudentServlet</servlet-name>
-        <url-pattern>/method/add_student</url-pattern>
+        <servlet-name>DelDataServlet</servlet-name>
+        <url-pattern>/method/del_data</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>DelStudentServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.DelStudentServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DelStudentServlet</servlet-name>
-        <url-pattern>/method/del_student</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>DelCourseServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.DelCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DelCourseServlet</servlet-name>
-        <url-pattern>/method/del_course</url-pattern>
-    </servlet-mapping>
-
+    <!--Севрлет по умолчанию, возвращает на страничку текущего пользователя-->
     <servlet>
         <servlet-name>DefaultServlet</servlet-name>
         <servlet-class>ru.innopolis.stc9.controllers.DefaultServlet</servlet-class>
@@ -104,17 +86,8 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>AddCourseServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.AddCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddCourseServlet</servlet-name>
-        <url-pattern>/method/add_course</url-pattern>
-    </servlet-mapping>
-
     <!--Filters-->
-
+    <!--Проверяет права пользователя и в зависимости от них перенаправляет пользователя-->
     <filter>
         <filter-name>LoginValidFilter</filter-name>
         <filter-class>ru.innopolis.stc9.controllers.filters.LoginValidFilter</filter-class>
@@ -123,7 +96,7 @@
         <filter-name>LoginValidFilter</filter-name>
         <url-pattern>/login_valid</url-pattern>
     </filter-mapping>
-
+    <!--Фильтр-логгер-->
     <filter>
         <filter-name>LogFilter</filter-name>
         <filter-class>ru.innopolis.stc9.controllers.filters.LogFilter</filter-class>
@@ -131,5 +104,23 @@
     <filter-mapping>
         <filter-name>LogFilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--Фильтр ошибок-->
+    <filter>
+        <filter-name>ErrorFilter</filter-name>
+        <filter-class>ru.innopolis.stc9.controllers.filters.ErrorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ErrorFilter</filter-name>
+        <url-pattern>/error</url-pattern>
+    </filter-mapping>
+    <!---->
+    <filter>
+        <filter-name>JspSecureFilter</filter-name>
+        <filter-class>ru.innopolis.stc9.controllers.filters.JspSecureFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>JspSecureFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
 </web-app>
