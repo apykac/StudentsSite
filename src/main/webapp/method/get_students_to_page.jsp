@@ -6,21 +6,30 @@
 <head>
     <meta charset="utf-8"/>
     <title>Вывод студентов</title>
+    <style><%@include file='../styles/styles.css'%></style>
 </head>
 <body>
-    <%@include file="../pieces/logout_panel.jsp"%>
-    <a href="${pageContext.request.contextPath}/defaultmenu">Вернуться в меню</a>
+    <%@include file="../pieces/logout_panel.jsp"%> <%@include file="../pieces/back_to_menu.jsp"%>
+    <br>
+    <br>
     <p>Список студентов: </p>
-    <ul>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>ID курса</th>
+        </tr>
         <%for (Object student: objects) {%>
-            <li>
-                <%=((Student)student).getId()%>
-                <%=((Student)student).getSecondName()%>
-                <%=((Student)student).getFirstName()%>
-                <%=((Student)student).getMiddleName()%>
-                <%=((Student)student).getCourseId()%>
-            </li>
+        <tr>
+            <td><%=((Student)student).getId()%></td>
+            <td><%=((Student)student).getSecondName()%></td>
+            <td><%=((Student)student).getFirstName()%></td>
+            <td><%=((Student)student).getMiddleName()%></td>
+            <td><%=((Student)student).getCourseId()%></td>
+        </tr>
         <%}%>
-    </ul>
+    </table>
 </body>
 </html>

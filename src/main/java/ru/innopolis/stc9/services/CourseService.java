@@ -12,21 +12,22 @@ public class CourseService {
     private static Logger logger = Logger.getLogger(CourseService.class);
     private static CoursesDAO coursesDAO = new CoursesDAOImpl();
 
-    public List<Object> getCourses (String courseName) {
+    public List<Object> getCourses(String courseName) {
         List<Object> result = new ArrayList<>();
         List<Course> courses = getCoursesByName(courseName);
-        for (Course course: courses) {
+        for (Course course : courses) {
             result.add(course);
         }
         return result;
     }
 
     public List<Course> getCoursesByName(String courseName) {
+        courseName = courseName.equals("") ? null : courseName;
         return coursesDAO.getAllCoursesByName(courseName);
     }
 
     public void addCourse(String courseName) {
-        coursesDAO.addCourse(new Course(0,courseName));
+        coursesDAO.addCourse(new Course(0, courseName));
     }
 
     public void delCourse(Integer courseId) {

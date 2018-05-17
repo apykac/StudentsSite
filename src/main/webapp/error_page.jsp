@@ -5,19 +5,14 @@
     <title>ERROR PAGE</title>
 </head>
 <body>
+    <h1>OOps some error</h1>
     <%
         String errorMessage = request.getParameter("error_message");
         String displayErrMsg = "";
         String pathToGo = "";
-        switch (errorMessage) {
-            case "authorisationError":
-                displayErrMsg = "Ошибка авторизации, попробуйте авторизоваться снова";
-                pathToGo = "login";
-                break;
-            case "permissionError":
-                displayErrMsg = "Недостаточно прав";
-                pathToGo = "default";
-                break;
+        if (errorMessage.equals("permissionError")) {
+            displayErrMsg = "Недостаточно прав";
+            pathToGo = "default";
         }
     %>
     <h1><%=displayErrMsg%></h1>

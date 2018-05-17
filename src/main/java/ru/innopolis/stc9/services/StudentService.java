@@ -10,16 +10,19 @@ import java.util.List;
 public class StudentService {
     private static StudentsDAO studentsDAO = new StudentsDAOImpl();
 
-    public List<Object> getStudents (String firstName, String secondName, String middleName) {
+    public List<Object> getStudents(String firstName, String secondName, String middleName) {
         List<Object> result = new ArrayList<>();
         List<Student> students = getStudentsByNameFIO(firstName, secondName, middleName);
-        for (Student student: students) {
+        for (Student student : students) {
             result.add(student);
         }
         return result;
     }
 
     public List<Student> getStudentsByNameFIO(String firstName, String secondName, String middleName) {
+        firstName = firstName.equals("") ? null : firstName;
+        secondName = secondName.equals("") ? null : secondName;
+        middleName = middleName.equals("") ? null : middleName;
         return studentsDAO.getAllStudentsByName(firstName, secondName, middleName);
     }
 

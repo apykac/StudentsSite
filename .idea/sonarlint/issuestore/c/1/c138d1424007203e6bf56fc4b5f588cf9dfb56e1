@@ -1,17 +1,0 @@
-
-U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(™äñ¦8Í½ı¨¶,
-Vsquid:S1161":Add the "@Override" annotation above this method signature(üª¼í8è‹Ô§¶,
-Fsquid:S1068"*Remove this unused "logger" private field.(Ã–õ8§ğæ¥¶,
-gsquid:S1192"KDefine a constant instead of duplicating this literal "methodType" 3 times.(•ê—8ô‘²©¶,
-Osquid:S1989"3Add a "try/catch" block for "setCharacterEncoding".(ø·­½8è‹Ô§¶,
-usquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒÀ“œıÿÿÿÿ
-Fsquid:S1989"+Add a "try/catch" block for "sendRedirect".(ñâÔ 8è‹Ô§¶,
-Gsquid:S1989"+Add a "try/catch" block for "sendRedirect".(•ê—8è‹Ô§¶,
-ysquid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(Ê—¡şÿÿÿÿ8î¢é¥¶,
-ssquid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(ñÛª
-8Ã“ê¥¶,
-gsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(™äñ¦8Í½ı¨¶,
-Gsquid:S1989"+Add a "try/catch" block for "sendRedirect".(Õî‚8çÙ€¨¶,
-U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(™äñ¦8ô‘²©¶,
-gsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(™äñ¦8ô‘²©¶,
-Fsquid:S1989"+Add a "try/catch" block for "sendRedirect".(»‡³Z8è‹Ô§¶,

@@ -7,43 +7,16 @@
     <!--Обработка авторизации пользователя-->
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.LoginController</servlet-class>
+        <servlet-class>ru.innopolis.stc9.Servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-    <!--Админка-->
-    <servlet>
-        <servlet-name>AdminPageServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.AdminPageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminPageServlet</servlet-name>
-        <url-pattern>/admin_page</url-pattern>
-    </servlet-mapping>
-    <!--Страница обычного пользователя-->
-    <servlet>
-        <servlet-name>UserPageServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.UserPageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserPageServlet</servlet-name>
-        <url-pattern>/user_page</url-pattern>
-    </servlet-mapping>
-    <!--Страницы гостя-->
-    <servlet>
-        <servlet-name>GuestServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.GuestPageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GuestServlet</servlet-name>
-        <url-pattern>/guest_page</url-pattern>
-    </servlet-mapping>
     <!--Сервлет распределения запросов пользователя, зависит от запрошенного метода-->
     <servlet>
         <servlet-name>ServiceServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.ServiceServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.Servlets.ServiceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServiceServlet</servlet-name>
@@ -52,7 +25,7 @@
     <!--Сервлет вывода данных на страницу, выбирает тип даных сам-->
     <servlet>
         <servlet-name>PrintToPageServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.PrintToPageServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.Servlets.MethodServlets.PrintToPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PrintToPageServlet</servlet-name>
@@ -61,7 +34,7 @@
     <!--Сервлет добавление данных в БД, доступно только для администратора-->
     <servlet>
         <servlet-name>AddDataServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.AddDataServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.Servlets.MethodServlets.AddDataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddDataServlet</servlet-name>
@@ -70,7 +43,7 @@
     <!--Сервлет удаления данных из БД, доступно только для адмнистратора-->
     <servlet>
         <servlet-name>DelDataServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.MethodServlets.DelDataServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.Servlets.MethodServlets.DelDataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DelDataServlet</servlet-name>
@@ -79,7 +52,7 @@
     <!--Севрлет по умолчанию, возвращает на страничку текущего пользователя-->
     <servlet>
         <servlet-name>DefaultServlet</servlet-name>
-        <servlet-class>ru.innopolis.stc9.controllers.DefaultServlet</servlet-class>
+        <servlet-class>ru.innopolis.stc9.Servlets.DefaultServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DefaultServlet</servlet-name>
@@ -87,19 +60,48 @@
     </servlet-mapping>
     
     <!--Filters-->
+    <!--Фильтр методов администратора-->
+    <!--<filter>
+        <filter-name>AdminMethodFilter</filter-name>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.AdminMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminMethodFilter</filter-name>
+        <url-pattern>/method/admin</url-pattern>
+    </filter-mapping>-->
+    <!--Фильтр пользовательских методов-->
+    <!--<filter>
+        <filter-name>UserMethodFilter</filter-name>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.UserMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserMethodFilter</filter-name>
+        <url-pattern>/method/user</url-pattern>
+    </filter-mapping>-->
     <!--Проверяет права пользователя и в зависимости от них перенаправляет пользователя-->
     <filter>
         <filter-name>LoginValidFilter</filter-name>
-        <filter-class>ru.innopolis.stc9.controllers.filters.LoginValidFilter</filter-class>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.LoginValidFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LoginValidFilter</filter-name>
         <url-pattern>/login_valid</url-pattern>
     </filter-mapping>
+    <!--Фильтр доступа главных страниц-->
+    <filter>
+        <filter-name>MainPagesFilter</filter-name>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.MainPagesFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MainPagesFilter</filter-name>
+        <url-pattern>/admin_page</url-pattern>
+        <url-pattern>/user_page</url-pattern>
+        <url-pattern>/guest_page</url-pattern>
+    </filter-mapping>
     <!--Фильтр-логгер-->
     <filter>
         <filter-name>LogFilter</filter-name>
-        <filter-class>ru.innopolis.stc9.controllers.filters.LogFilter</filter-class>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.LogFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LogFilter</filter-name>
@@ -108,16 +110,16 @@
     <!--Фильтр ошибок-->
     <filter>
         <filter-name>ErrorFilter</filter-name>
-        <filter-class>ru.innopolis.stc9.controllers.filters.ErrorFilter</filter-class>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.ErrorFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ErrorFilter</filter-name>
         <url-pattern>/error</url-pattern>
     </filter-mapping>
-    <!---->
+    <!--Фильтр сокрытия jsp страниц-->
     <filter>
         <filter-name>JspSecureFilter</filter-name>
-        <filter-class>ru.innopolis.stc9.controllers.filters.JspSecureFilter</filter-class>
+        <filter-class>ru.innopolis.stc9.Servlets.filters.JspSecureFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>JspSecureFilter</filter-name>

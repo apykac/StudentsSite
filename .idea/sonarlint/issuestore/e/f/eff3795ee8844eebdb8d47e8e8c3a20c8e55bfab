@@ -1,17 +1,0 @@
-
-isquid:S1301?"KReplace this "switch" statement by "if" statements to increase readability.(™äñ¦8Æœ»£¶,
-{squid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(Ê—¡şÿÿÿÿ8×¼‡¢¶,
-W"squid:SwitchLastCaseIsDefaultCheck?""Add a default case to this switch.(™äñ¦8Æœ»£¶,
-isquid:S1192&"KDefine a constant instead of duplicating this literal "methodType" 3 times.(•ê—8Æœ»£¶,
-usquid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(ñÛª
-8Àü¾¤¶,
-Isquid:S1989"+Add a "try/catch" block for "sendRedirect".(Õî‚8Øüú§¶,
-Isquid:S1989&"+Add a "try/catch" block for "sendRedirect".(•ê—8°•“£¶,
-W"squid:SwitchLastCaseIsDefaultCheck*""Add a default case to this switch.(™äñ¦8°•“£¶,
-Hsquid:S1068"*Remove this unused "logger" private field.(ƒÌıˆ8×¼‡¢¶,
-Hsquid:S1989"+Add a "try/catch" block for "sendRedirect".(ñâÔ 8°•“£¶,
-Nsquid:S1989""+Add a "try/catch" block for "sendRedirect".(ôŞœÃúÿÿÿÿ8°•“£¶,
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒÀ“œıÿÿÿÿ
-isquid:S1301*"KReplace this "switch" statement by "if" statements to increase readability.(™äñ¦8°•“£¶,
-Qsquid:S1989"3Add a "try/catch" block for "setCharacterEncoding".(ø·­½8°•“£¶,
-Jsquid:S1989H"'Add a "try/catch" block for "parseInt".(î»§„üÿÿÿÿ8½ÿù¤¶,
