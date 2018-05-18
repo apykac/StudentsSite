@@ -11,8 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class StudentsDAOImpl implements StudentsDAO {
+    private DAOhelper helper = new DAOhelper(new Student());
     private static Logger logger = Logger.getLogger(StudentsDAOImpl.class);
     private static ConnectionManager connectionManager = ConnectionToStudentsDB.getInstance();
 
@@ -43,15 +45,7 @@ public class StudentsDAOImpl implements StudentsDAO {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE id = ?");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                student = new Student(
-                        resultSet.getInt("id"),
-                        resultSet.getString("firstName"),
-                        resultSet.getString("secondName"),
-                        resultSet.getString("middleName"),
-                        resultSet.getInt("course")
-                );
-            }
+            if (resultSet.next()) student = new Student(resultSet);
         } catch (SQLException e) {
             logger.error("Getting a \"student\" failed: " + e.getMessage(), e);
             return null;
@@ -75,6 +69,7 @@ public class StudentsDAOImpl implements StudentsDAO {
                     "\"middleName\" = ?, " +
                     "course = ?" +
                     "WHERE id = ?");
+
             statement.setString(1, student.getFirstName());
             statement.setString(2, student.getSecondName());
             statement.setString(3, student.getMiddleName());
@@ -104,20 +99,18 @@ public class StudentsDAOImpl implements StudentsDAO {
         }
     }
 
-    @Override
-    public List<Student> getAllStudentsByName(String firstName, String secondName, String middleName) {
+    public List<Student> getAllByParam(Map<String, String[]> incParam, String stopWord) {
         List<Student> result = new ArrayList<>();
-        logger.info("Getting an \"students\" by name: " + secondName + " " + firstName + " " + middleName);
+        logger.info("Getting an \"students\" by name");
         try (Connection connection = connectionManager.getConnection()) {
-            PreparedStatement statement = rightStatment(firstName, secondName, middleName, connection);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE " +
+                    "\"firstName\" LIKE ? AND " +
+                    "\"secondName\" LIKE ? AND " +
+                    "\"middleName\" LIKE ?");
+            helper.statmentSetter(statement,incParam,stopWord,true,0);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Student student = new Student(resultSet.getInt("id"),
-                        resultSet.getString("firstName"),
-                        resultSet.getString("secondName"),
-                        resultSet.getString("middleName"),
-                        resultSet.getInt("course"));
-                result.add(student);
+                result.add(new Student(resultSet));
             }
         } catch (SQLException e) {
             logger.info("Getting an \"students\" by name failed: " + e.getMessage(), e);
@@ -127,50 +120,4 @@ public class StudentsDAOImpl implements StudentsDAO {
         return result;
     }
 
-    private PreparedStatement rightStatment(String firstName, String secondName, String middleName, Connection connection) throws SQLException {
-        PreparedStatement statement;
-        String prefix = "SELECT * FROM students WHERE ";
-        if (firstName == null && secondName == null && middleName == null) {
-            statement = connection.prepareStatement("SELECT * FROM students");
-            return statement;
-        }
-        if (firstName == null && secondName == null) {
-            statement = connection.prepareStatement(prefix + "\"middleName\"=?");
-            statement.setString(1, middleName);
-            return statement;
-        }
-        if (middleName == null && secondName == null) {
-            statement = connection.prepareStatement(prefix + "\"firstName\"=?");
-            statement.setString(1, firstName);
-            return statement;
-        }
-        if (middleName == null && firstName == null) {
-            statement = connection.prepareStatement(prefix + "\"secondName\"=?");
-            statement.setString(1, secondName);
-            return statement;
-        }
-        if (middleName == null) {
-            statement = connection.prepareStatement(prefix + "\"firstName\"=? AND \"secondName\"=?");
-            statement.setString(1, firstName);
-            statement.setString(2, secondName);
-            return statement;
-        }
-        if (firstName == null) {
-            statement = connection.prepareStatement(prefix + "\"middleName\"=? AND \"secondName\"=?");
-            statement.setString(1, middleName);
-            statement.setString(2, secondName);
-            return statement;
-        }
-        if (secondName == null) {
-            statement = connection.prepareStatement(prefix + "\"firstName\"=? AND \"middleName\"=?");
-            statement.setString(1, firstName);
-            statement.setString(2, middleName);
-            return statement;
-        }
-        statement = connection.prepareStatement(prefix + "\"firstName\"=? AND \"secondName\"=? AND \"middleName\"=?");
-        statement.setString(1, firstName);
-        statement.setString(2, secondName);
-        statement.setString(3, middleName);
-        return statement;
-    }
 }

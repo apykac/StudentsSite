@@ -25,8 +25,8 @@
                 <td><input type="text" name="middleName" id="middleName"></td>
             </tr>
         </table>
-        <input type="submit" name="Вывести студентов">
         <input type="hidden" name="methodType" value="students_to_page">
+        <input type="submit" name="Вывести студентов">
     </form>
     <br>
     <i>

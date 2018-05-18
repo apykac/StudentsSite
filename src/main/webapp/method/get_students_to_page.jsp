@@ -19,7 +19,7 @@
             <th>фамилия</th>
             <th>Имя</th>
             <th>Отчество</th>
-            <th>ID курса</th>
+            <th>Название курса</th>
         </tr>
         <%for (Object student: objects) {%>
         <tr>
@@ -27,7 +27,7 @@
             <td><%=((Student)student).getSecondName()%></td>
             <td><%=((Student)student).getFirstName()%></td>
             <td><%=((Student)student).getMiddleName()%></td>
-            <td><%=((Student)student).getCourseId()%></td>
+            <td><%=((Student)student).getCourse().getName()%></td>
         </tr>
         <%}%>
     </table>

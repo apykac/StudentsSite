@@ -10,4 +10,6 @@ public interface SubjectsDAO {
     boolean updateSubject(Subject subject);
 
     boolean deleteSubjectById(int id);
+
+
 }

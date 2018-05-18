@@ -47,7 +47,6 @@ public class MarksDAOImpl implements MarksDAO {
                         resultSet.getInt("value")
                 );
             }
-
         } catch (SQLException e) {
             logger.error("Getting a \"mark\" failed: " + e.getMessage(), e);
             return null;

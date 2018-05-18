@@ -40,10 +40,11 @@ public class PrintToPageServlet extends HttpServlet {
             case "courses_to_page":
                 return courseService.getCourses(req.getParameter("course"));
             case "students_to_page":
-                return studentService.getStudents(
+                /*return studentService.getStudents(
                         req.getParameter("firstName"),
                         req.getParameter("secondName"),
-                        req.getParameter("middleName"));
+                        req.getParameter("middleName"));*/
+                return studentService.getStudents(req.getParameterMap(),"methodType");
         }
         return null;
     }

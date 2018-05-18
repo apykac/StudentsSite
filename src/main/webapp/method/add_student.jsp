@@ -31,8 +31,8 @@
                 <td><input type="text" name="courseId" id="courseId"></td>
             </tr>
         </table>
-        <input type="submit" name="Добавить студента">
         <input type="hidden" name="methodType" value="add_student">
+        <input type="submit" name="Добавить студента">
     </form>
     <br>
     <%if ((errorMsg != null) && errorMsg.equals("addStudentError")) {%> <b>Введены не корректные данные ФИО студента</b> <%}%>

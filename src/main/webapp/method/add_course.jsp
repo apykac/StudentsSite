@@ -19,8 +19,8 @@
                 <td><input type="text" name="course" id="courseName"></td>
             </tr>
         </table>
-        <input type="submit" name="Добавить курс">
         <input type="hidden" name="methodType" value="add_course">
+        <input type="submit" name="Добавить курс">
     </form>
     <br>
     <%if ((errorMsg != null) && errorMsg.equals("addCourseError")) {%> <b>Введены не корректные название курса</b> <%}%>

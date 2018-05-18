@@ -19,8 +19,8 @@
                 <td><input type="text" name="id" id="id"></td>
             </tr>
         </table>
-        <input type="submit" name="Удалить студента">
         <input type="hidden" name="methodType" value="del_student">
+        <input type="submit" name="Удалить студента">
     </form>
     <br>
     <%if((errorMsg != null) && errorMsg.equals("delStudentError")) {%> <b>Некорректное ID студента</b> <%}%>

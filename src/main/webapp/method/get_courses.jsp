@@ -17,8 +17,8 @@
                 <td><input type="text" name="course" id="course"></td>
             </tr>
         </table>
-        <input type="submit" name="Вывести курсы">
         <input type="hidden" name="methodType" value="courses_to_page">
+        <input type="submit" name="Вывести курсы">
     </form>
     <br>
     <i>Если оставить поле пустым, выведутся все курсы</i>
