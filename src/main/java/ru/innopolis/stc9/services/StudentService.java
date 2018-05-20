@@ -1,48 +1,50 @@
 package ru.innopolis.stc9.services;
 
+import ru.innopolis.stc9.db.dao.ObjectsDAO;
 import ru.innopolis.stc9.db.dao.StudentsDAO;
-import ru.innopolis.stc9.db.dao.StudentsDAOImpl;
-import ru.innopolis.stc9.pojo.Student;
+import ru.innopolis.stc9.pojo.DBObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class StudentService {
-    private static StudentsDAO studentsDAO = new StudentsDAOImpl();
+    private static ObjectsDAO studentsDAO = new StudentsDAO();
 
-    /*public List<Object> getStudents(String firstName, String secondName, String middleName) {
-        List<Object> result = new ArrayList<>();
-        Map<String,String> incParam = new HashMap<>();
-        incParam.put("firstName", firstName);
-        incParam.put("secondName", secondName);
-        incParam.put("middleName", middleName);
-        List<Student> students = getStudentsByNameFIO(incParam);
-        for (Student student : students) {
-            result.add(student);
+    public static List<String> isCorrectData(Map<String, String[]> incParam) {
+        List<String> result = new ArrayList<>();
+        if ((incParam.get("firstName") != null) && incParam.get("firstName")[0].equals(""))
+            result.add("Invalid first name");
+        if ((incParam.get("secondName") != null) && incParam.get("secondName")[0].equals(""))
+            result.add("Invalid second name");
+        try {
+            if (incParam.get("courseId") != null)
+                Integer.parseInt(incParam.get("courseId")[0]);
+        } catch (Exception e) {
+            result.add("Invalid ID of course");
+        }
+        try {
+            if (incParam.get("id") != null)
+                Integer.parseInt(incParam.get("id")[0]);
+        } catch (Exception e) {
+            result.add("Invalid ID of student");
         }
         return result;
-    }*/
-
-    public List<Object> getStudents(Map<String, String[]> incParam, String stopWord) {
-        List<Object> result = new ArrayList<>();
-        List<Student> students = getStudentsByNameFIO(incParam,stopWord);
-        for (Student student : students) {
-            result.add(student);
-        }
-        return result;
     }
 
-    public List<Student> getStudentsByNameFIO(Map<String, String[]> incParam, String stopWord) {
-        return studentsDAO.getAllByParam(incParam,stopWord);
+    public List<DBObject> getStudents(Map<String, String[]> incParam, String stopWord) {
+        return studentsDAO.getAllByParam(incParam, stopWord);
     }
 
-    public void addStudent(String firstName, String secondName, String middleName, Integer courseId) {
-        studentsDAO.addStudent(new Student(-1, firstName, secondName, middleName, courseId));
+    public void addStudent(Map<String, String[]> incParam) {
+        studentsDAO.addObject(incParam);
     }
 
-    public void delStudent(Integer studentId) {
-        studentsDAO.deleteStudentById(studentId);
+    public void delStudent(Map<String, String[]> incParam) {
+        studentsDAO.deleteObjectById(Integer.parseInt(incParam.get("id")[0]));
+    }
+
+    public void updateStudent(Map<String, String[]> incParam) {
+        studentsDAO.updateObject(incParam);
     }
 }

@@ -2,6 +2,7 @@ package ru.innopolis.stc9.Servlets.MethodServlets;
 
 import org.apache.log4j.Logger;
 import ru.innopolis.stc9.Servlets.ConstantContainer;
+import ru.innopolis.stc9.pojo.DBObject;
 import ru.innopolis.stc9.services.CourseService;
 import ru.innopolis.stc9.services.StudentService;
 
@@ -30,20 +31,16 @@ public class PrintToPageServlet extends HttpServlet {
         }
         req.setCharacterEncoding(ConstantContainer.UTF8);
         resp.setCharacterEncoding(ConstantContainer.UTF8);
-        List<Object> objects = listCreator(req);
+        List<DBObject> objects = listCreator(req);
         req.setAttribute("objects", objects);
         req.getRequestDispatcher(getDispatcherPath(req)).forward(req, resp);
     }
 
-    private List<Object> listCreator(HttpServletRequest req) {
+    private List<DBObject> listCreator(HttpServletRequest req) {
         switch (req.getParameter("methodType")) {
             case "courses_to_page":
-                return courseService.getCourses(req.getParameter("course"));
+                return courseService.getCourses(req.getParameterMap(),"methodType");
             case "students_to_page":
-                /*return studentService.getStudents(
-                        req.getParameter("firstName"),
-                        req.getParameter("secondName"),
-                        req.getParameter("middleName"));*/
                 return studentService.getStudents(req.getParameterMap(),"methodType");
         }
         return null;

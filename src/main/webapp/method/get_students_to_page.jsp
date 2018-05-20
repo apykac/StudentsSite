@@ -1,7 +1,8 @@
 <%@ page import="ru.innopolis.stc9.pojo.Student" %>
 <%@ page import="java.util.List" %>
+<%@ page import="ru.innopolis.stc9.pojo.DBObject" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%List<Object> objects = (List<Object>) request.getAttribute("objects");%>
+<%List<DBObject> objects = (List<DBObject>) request.getAttribute("objects");%>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -16,12 +17,12 @@
     <table>
         <tr>
             <th>ID</th>
-            <th>фамилия</th>
+            <th>Фамилия</th>
             <th>Имя</th>
             <th>Отчество</th>
             <th>Название курса</th>
         </tr>
-        <%for (Object student: objects) {%>
+        <%for (DBObject student: objects) {%>
         <tr>
             <td><%=((Student)student).getId()%></td>
             <td><%=((Student)student).getSecondName()%></td>

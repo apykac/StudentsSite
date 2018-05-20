@@ -31,18 +31,30 @@ public class ServiceServlet extends HttpServlet {
                 case "add_student":
                     req.getRequestDispatcher("/method/add_student.jsp").forward(req, resp);
                     return;
-                case "del_student":
-                    req.getRequestDispatcher("/method/del_student.jsp").forward(req, resp);
-                    return;
                 case "add_course":
                     req.getRequestDispatcher("/method/add_course.jsp").forward(req, resp);
+                    return;
+                case "del_student":
+                    req.getRequestDispatcher("/method/del_student.jsp").forward(req, resp);
                     return;
                 case "del_course":
                     req.getRequestDispatcher("/method/del_course.jsp").forward(req, resp);
                     return;
+                case "update_student":
+                    req.getRequestDispatcher("/method/update_student.jsp").forward(req, resp);
+                    return;
+                case "update_course":
+                    req.getRequestDispatcher("/method/update_course.jsp").forward(req, resp);
+                    return;
+
             }
         } catch (IOException | ServletException e) {
             logger.error(e.getMessage());
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

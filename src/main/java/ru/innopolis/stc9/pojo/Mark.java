@@ -1,6 +1,17 @@
 package ru.innopolis.stc9.pojo;
 
-public class Mark {
+import ru.innopolis.stc9.db.dao.LessonsDAO;
+import ru.innopolis.stc9.db.dao.StudentsDAO;
+import ru.innopolis.stc9.db.dao.TypeOfGetSet;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Mark implements DBObject{
     private int id;
     private int studentId;
     private Student student;
@@ -8,18 +19,7 @@ public class Mark {
     private Lesson lesson;
     private int value;
 
-    public Mark(int id, int studentId, int lessonId, int value) {
-        this.id = id;
-        this.studentId = studentId;
-        this.lessonId = lessonId;
-        this.value = value;
-    }
-
-    public Mark(int id, Student student, Lesson lesson, int value) {
-        this.id = id;
-        this.student = student;
-        this.lesson = lesson;
-        this.value = value;
+    public Mark() {
     }
 
     public int getId() {
@@ -68,5 +68,51 @@ public class Mark {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public Map<String, TypeOfGetSet> getParamMap() {
+        Map<String, TypeOfGetSet> result = new HashMap<>();
+        result.put("id", TypeOfGetSet.INTEGER);
+        result.put("student", TypeOfGetSet.INTEGER);
+        result.put("lesson", TypeOfGetSet.INTEGER);
+        result.put("value", TypeOfGetSet.INTEGER);
+        return result;
+    }
+
+    @Override
+    public List<Object[]> getDBOMethods(boolean isOrdered) {
+        List<Object[]> result = new ArrayList<>();
+        if (isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
+        result.add(new Object[]{"getStudentId", TypeOfGetSet.INTEGER});
+        result.add(new Object[]{"getLessonId", TypeOfGetSet.INTEGER});
+        result.add(new Object[]{"getValue", TypeOfGetSet.INTEGER});
+        if (!isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
+        return result;
+    }
+
+    @Override
+    public Mark getByResultSet(ResultSet resultSet) {
+        Mark mark = new Mark();
+        try {
+            mark.setId(resultSet.getInt("id"));
+            mark.setStudentId(resultSet.getInt("student"));
+            mark.setLessonId(resultSet.getInt("lesson"));
+            mark.setValue(resultSet.getInt("value"));
+            mark.setStudent(new StudentsDAO().getObjectById(mark.getStudentId()));
+            mark.setLesson(new LessonsDAO().getObjectById(mark.getLessonId()));
+        } catch (SQLException e) {
+        }
+        return mark;
+    }
+
+    @Override
+    public Mark getByParam(Map<String, String[]> incParam) {
+        Mark mark = new Mark();
+        if (incParam.get("id") != null) mark.setId(Integer.parseInt(incParam.get("id")[0]));
+        mark.setStudentId(Integer.parseInt(incParam.get("student")[0]));
+        mark.setLessonId(Integer.parseInt(incParam.get("lesson")[0]));
+        mark.setValue(Integer.parseInt(incParam.get("value")[0]));
+        return mark;
     }
 }

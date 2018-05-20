@@ -49,6 +49,15 @@
         <servlet-name>DelDataServlet</servlet-name>
         <url-pattern>/method/del_data</url-pattern>
     </servlet-mapping>
+    <!--Сервлет обновления данных в БД, доступно только для администраторов-->
+    <servlet>
+        <servlet-name>UpdateDataServlet</servlet-name>
+        <servlet-class>ru.innopolis.stc9.Servlets.MethodServlets.UpdateDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateDataServlet</servlet-name>
+        <url-pattern>/method/update_data</url-pattern>
+    </servlet-mapping>
     <!--Севрлет по умолчанию, возвращает на страничку текущего пользователя-->
     <servlet>
         <servlet-name>DefaultServlet</servlet-name>
@@ -60,24 +69,6 @@
     </servlet-mapping>
     
     <!--Filters-->
-    <!--Фильтр методов администратора-->
-    <!--<filter>
-        <filter-name>AdminMethodFilter</filter-name>
-        <filter-class>ru.innopolis.stc9.Servlets.filters.AdminMethodFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AdminMethodFilter</filter-name>
-        <url-pattern>/method/admin</url-pattern>
-    </filter-mapping>-->
-    <!--Фильтр пользовательских методов-->
-    <!--<filter>
-        <filter-name>UserMethodFilter</filter-name>
-        <filter-class>ru.innopolis.stc9.Servlets.filters.UserMethodFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>UserMethodFilter</filter-name>
-        <url-pattern>/method/user</url-pattern>
-    </filter-mapping>-->
     <!--Проверяет права пользователя и в зависимости от них перенаправляет пользователя-->
     <filter>
         <filter-name>LoginValidFilter</filter-name>

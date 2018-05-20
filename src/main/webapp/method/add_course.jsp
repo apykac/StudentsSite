@@ -1,6 +1,8 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String errorMsg = request.getParameter("error");
+    List<String> errors = (List<String>) request.getAttribute("errorMsg");
 %>
 <html>
 <head>
@@ -15,15 +17,22 @@
     <form action="${pageContext.request.contextPath}/method/add_data" method="post">
         <table>
             <tr>
-                <td><label for="courseName">Название курса</label></td>
-                <td><input type="text" name="course" id="courseName"></td>
+                <td><label for="name">Название курса</label></td>
+                <td><input type="text" name="name" id="name"></td>
             </tr>
         </table>
         <input type="hidden" name="methodType" value="add_course">
         <input type="submit" name="Добавить курс">
     </form>
     <br>
-    <%if ((errorMsg != null) && errorMsg.equals("addCourseError")) {%> <b>Введены не корректные название курса</b> <%}%>
+    <%if ((errorMsg != null) && errorMsg.equals("true")) {%>
+        <b>
+        <%for (String s: errors) {%>
+            <%=s%>
+            <br>
+        <%}%>
+        </b>
+    <%}%>
     <br>
     <i>Название курса не должно быть пустым</i>
 </body>

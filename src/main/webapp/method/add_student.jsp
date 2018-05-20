@@ -1,6 +1,8 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String errorMsg = request.getParameter("error");
+    List<String> errors = (List<String>) request.getAttribute("errorMsg");
 %>
 <html>
 <head>
@@ -35,7 +37,14 @@
         <input type="submit" name="Добавить студента">
     </form>
     <br>
-    <%if ((errorMsg != null) && errorMsg.equals("addStudentError")) {%> <b>Введены не корректные данные ФИО студента</b> <%}%>
+    <%if ((errorMsg != null) && errorMsg.equals("true")) {%>
+    <b>
+        <%for (String s: errors) {%>
+        <%=s%>
+        <br>
+        <%}%>
+    </b>
+    <%}%>
     <br>
     <i>Имя, фамилия и курс не должны быть пустыми, отчество может отсутствовать</i>
 </body>

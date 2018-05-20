@@ -1,14 +1,16 @@
 package ru.innopolis.stc9.pojo;
 
-import ru.innopolis.stc9.db.dao.CoursesDAOImpl;
+import ru.innopolis.stc9.db.dao.CoursesDAO;
 import ru.innopolis.stc9.db.dao.TypeOfGetSet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Student extends DBObject {
+public class Student implements DBObject {
     private int id;
     private String firstName;
     private String secondName;
@@ -17,47 +19,6 @@ public class Student extends DBObject {
     private Course course;
 
     public Student() {
-    }
-
-    public Student(int id, String firstName, String secondName, String middleName, int courseId) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.middleName = middleName;
-        this.courseId = courseId;
-    }
-
-    public Student(ResultSet resultSet) {
-        try {
-            this.id = resultSet.getInt("id");
-            this.firstName = resultSet.getString("firstName");
-            this.secondName = resultSet.getString("secondName");
-            this.middleName = resultSet.getString("middleName");
-            this.courseId = resultSet.getInt("course");
-            course = new CoursesDAOImpl().getCourseById(this.courseId);
-        } catch (SQLException e) {
-        }
-    }
-
-    @Override
-    public Map<String, TypeOfGetSet> getParamMap() {
-        Map<String, TypeOfGetSet> result = new HashMap<>();
-        result.put("id", TypeOfGetSet.INTEGER);
-        result.put("firstName", TypeOfGetSet.STRING);
-        result.put("secondName", TypeOfGetSet.STRING);
-        result.put("middleName", TypeOfGetSet.STRING);
-        result.put("course", TypeOfGetSet.INTEGER);
-        return result;
-    }
-    @Override
-    public Map<String, TypeOfGetSet> getDBOMethods() {
-        Map<String, TypeOfGetSet> result = new HashMap<>();
-        result.put("getFirstName",TypeOfGetSet.STRING);
-        result.put("getSecondName",TypeOfGetSet.STRING);
-        result.put("getMiddleName",TypeOfGetSet.STRING);
-        result.put("getCourseId",TypeOfGetSet.INTEGER);
-        result.put("getId",TypeOfGetSet.INTEGER);
-        return result;
     }
 
     public int getId() {
@@ -106,6 +67,55 @@ public class Student extends DBObject {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    @Override
+    public Map<String, TypeOfGetSet> getParamMap() {
+        Map<String, TypeOfGetSet> result = new HashMap<>();
+        result.put("id", TypeOfGetSet.INTEGER);
+        result.put("firstName", TypeOfGetSet.STRING);
+        result.put("secondName", TypeOfGetSet.STRING);
+        result.put("middleName", TypeOfGetSet.STRING);
+        result.put("course", TypeOfGetSet.INTEGER);
+        return result;
+    }
+
+    @Override
+    public List<Object[]> getDBOMethods(boolean isOrdered) {
+        List<Object[]> result = new ArrayList<>();
+        if (isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
+        result.add(new Object[]{"getFirstName", TypeOfGetSet.STRING});
+        result.add(new Object[]{"getSecondName", TypeOfGetSet.STRING});
+        result.add(new Object[]{"getMiddleName", TypeOfGetSet.STRING});
+        result.add(new Object[]{"getCourseId", TypeOfGetSet.INTEGER});
+        if (!isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
+        return result;
+    }
+
+    @Override
+    public Student getByResultSet(ResultSet resultSet) {
+        Student student = new Student();
+        try {
+            student.setId(resultSet.getInt("id"));
+            student.setFirstName(resultSet.getString("firstName"));
+            student.setSecondName(resultSet.getString("secondName"));
+            student.setMiddleName(resultSet.getString("middleName"));
+            student.setCourseId(resultSet.getInt("course"));
+            student.setCourse(new CoursesDAO().getObjectById(student.getCourseId()));
+        } catch (SQLException e) {
+        }
+        return student;
+    }
+
+    @Override
+    public Student getByParam(Map<String, String[]> incParam) {
+        Student student = new Student();
+        if (incParam.get("id") != null) student.setId(Integer.parseInt(incParam.get("id")[0]));
+        student.setFirstName(incParam.get("firstName")[0]);
+        student.setSecondName(incParam.get("secondName")[0]);
+        student.setMiddleName(incParam.get("middleName")[0]);
+        student.setCourseId(Integer.parseInt(incParam.get("courseId")[0]));
+        return student;
     }
 }
 

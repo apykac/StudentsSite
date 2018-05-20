@@ -14,7 +14,7 @@
         <table>
             <tr>
                 <td><label for="course">Название курса</label></td>
-                <td><input type="text" name="course" id="course"></td>
+                <td><input type="text" name="name" id="course"></td>
             </tr>
         </table>
         <input type="hidden" name="methodType" value="courses_to_page">

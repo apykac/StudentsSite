@@ -31,10 +31,7 @@ public class UsersDAOImpl implements UsersDAO {
         } catch (SQLException e) {
             logger.error("Finding a \"user\" failed: " + e.getMessage(), e);
         }
-        if (user != null)
-            logger.info("Finding a \"user\" successfully, \"user\": " + user.getLogin());
-        else
-            logger.info("Finding a \"user\" successfully, \"user\": NULL");
+        logger.info("Finding a \"user\" successfully, \"user\"");
         return user;
     }
 }

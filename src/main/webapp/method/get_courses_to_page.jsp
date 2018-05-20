@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="ru.innopolis.stc9.pojo.Course" %>
 <%@ page import="java.util.List" %>
-<%List<Object> objects = (List<Object>) request.getAttribute("objects");%>
+<%@ page import="ru.innopolis.stc9.pojo.DBObject" %>
+<%List<DBObject> objects = (List<DBObject>) request.getAttribute("objects");%>
 <html>
 <head>
     <meta charset="utf-8"/>

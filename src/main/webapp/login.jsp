@@ -19,7 +19,7 @@
                 <td><input type="password" value="password" name="userPassword" id="userPswrd"></td>
             </tr>
         </table>
-        <input type="submit" value="Войти">
+        <input type="submit" value="Login">
     </form>
     <br>
     <%if ("authorisationError".equals(request.getParameter("error"))) {%>

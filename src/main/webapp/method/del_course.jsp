@@ -1,6 +1,8 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String errorMsg = request.getParameter("error");
+    List<String> errors = (List<String>) request.getAttribute("errorMsg");
 %>
 <html>
 <head>
@@ -23,7 +25,14 @@
         <input type="submit" name="Удалить курс">
     </form>
     <br>
-    <%if((errorMsg != null) && errorMsg.equals("delCourseError")) {%> <b>Некорректное ID курса</b> <%}%>
+    <%if ((errorMsg != null) && errorMsg.equals("true")) {%>
+    <b>
+        <%for (String s: errors) {%>
+        <%=s%>
+        <br>
+        <%}%>
+    </b>
+    <%}%>
     <br>
     <i>ID курса должно быть не пустое и быть цифрой</i>
 </body>

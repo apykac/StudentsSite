@@ -8,41 +8,42 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
 public class DAOhelper {
-    private DBObject object;
     private static Logger logger = Logger.getLogger(DAOhelper.class);
 
-    public DAOhelper(DBObject object) {
-        this.object = object;
+    public DAOhelper() {
     }
 
-    public void statmentSetter(PreparedStatement statement, Map<String, String[]> incParam,
-                               String stopWord, boolean isPattern, int length) {
-        if (length == 0) {
-            simpleStatementSetter(statement, incParam, stopWord, object.getParamMap(), isPattern);
-            return;
-        }
+    public DBObject getByParam(Map<String, String[]> incParam, DBObject object) {
+        return object.getByParam(incParam);
+    }
+
+    public DBObject getByResultSet(ResultSet resultSet, DBObject object) {
+        return object.getByResultSet(resultSet);
+    }
+
+    public void statementSetter(PreparedStatement statement, DBObject object, int length, boolean isOrdred) {
         int count = 1;
-        for (Map.Entry<String, TypeOfGetSet> pair : object.getDBOMethods().entrySet()) {
+        for (Object[] pair : object.getDBOMethods(false)) {
             if (length == 0) break;
             try {
-                Method method = object.getClass().getMethod(pair.getKey());
-                Object o = null;
-                method.invoke(o);
-                setting(statement, count, pair.getValue(), o, false);
+                Method method = object.getClass().getMethod((String) pair[0]);
+                setting(statement, count, (TypeOfGetSet) pair[1], method.invoke(object), false);
                 length--;
-                count--;
+                count++;
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 logger.error(e.getMessage());
             }
         }
     }
 
-    public void simpleStatementSetter(PreparedStatement statement, Map<String, String[]> incParam, String stopWord,
-                                      Map<String, TypeOfGetSet> typeOfGetSetMap, boolean isPattern) {
+    public void simpleStatementSetter(PreparedStatement statement, DBObject object, Map<String, String[]> incParam,
+                                      String stopWord, boolean isPattern) {
+        Map<String, TypeOfGetSet> typeOfGetSetMap = object.getParamMap();
         int count = 1;
         for (Map.Entry<String, String[]> pair : incParam.entrySet()) {
             if (pair.getKey().equals(stopWord)) break;

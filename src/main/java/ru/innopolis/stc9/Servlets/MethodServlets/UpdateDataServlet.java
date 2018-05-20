@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class AddDataServlet extends HttpServlet {
-    private static Logger logger = Logger.getLogger(AddDataServlet.class);
+public class UpdateDataServlet extends HttpServlet {
     private CourseService courseService = new CourseService();
     private StudentService studentService = new StudentService();
+    private static Logger logger = Logger.getLogger(UpdateDataServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,18 +37,17 @@ public class AddDataServlet extends HttpServlet {
             req.getRequestDispatcher("/method?method=" + req.getParameter("methodType") + "&error=true").forward(req,resp);
             return;
         }
-        doAdd(req);
+        doUpdate(req);
         resp.sendRedirect(req.getContextPath() + "/method?method=" + req.getParameter("methodType"));
     }
 
-    private void doAdd(HttpServletRequest req) {
+    private void doUpdate(HttpServletRequest req) {
         switch (req.getParameter("methodType")) {
-            case "add_course":
-                courseService.addCourse(req.getParameterMap());
+            case "update_course":
+                courseService.updateCourse(req.getParameterMap());
                 break;
-            case "add_student":
-                studentService.addStudent(req.getParameterMap());
+            case "update_student":
+                studentService.updateStudent(req.getParameterMap());
         }
     }
 }
-
