@@ -28,7 +28,7 @@
             <td><%=((Student)student).getSecondName()%></td>
             <td><%=((Student)student).getFirstName()%></td>
             <td><%=((Student)student).getMiddleName()%></td>
-            <td><%=((Student)student).getCourse().getName()%></td>
+            <td>(<%=((Student)student).getCourseId()%>) <%if (((Student)student).getCourse()!=null) {%><%=((Student)student).getCourse().getName()%><%}%></td>
         </tr>
         <%}%>
     </table>

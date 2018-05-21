@@ -8,8 +8,8 @@
     <h2>Выберите желаемое действие:</h2>
     <h3>Вывод данных:</h3>
     <ul>
-        <li><a href="${pageContext.request.contextPath}/method?method=get_students">Вывод стедентов по ФИО</a></li>
-        <li><a href="${pageContext.request.contextPath}/method?method=get_courses">Вывод курсов по названию</a></li>
+        <li><a href="${pageContext.request.contextPath}/method?method=get_student">Вывод стедентов по ФИО</a></li>
+        <li><a href="${pageContext.request.contextPath}/method?method=get_course">Вывод курсов по названию</a></li>
     </ul>
     <br>
     <h3>Добавление данных:</h3>

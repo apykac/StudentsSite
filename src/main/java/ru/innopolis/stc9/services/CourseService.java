@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CourseService {
+public class CourseService implements ObjectService{
     private static Logger logger = Logger.getLogger(CourseService.class);
-    private static ObjectsDAO coursesDAO = new CoursesDAO();
+    private static ObjectsDAO objectsDAO = new CoursesDAO();
 
-    public static List<String> isCorrectData(Map<String, String[]> incParam) {
+    public List<String> isCorrectData(Map<String, String[]> incParam) {
         List<String> result = new ArrayList<>();
         if ((incParam.get("name") != null) && incParam.get("name")[0].equals("")) result.add("Invalid name of course");
         try {
@@ -25,19 +25,19 @@ public class CourseService {
         return result;
     }
 
-    public List<DBObject> getCourses(Map<String, String[]> incParam, String stopWord) {
-        return coursesDAO.getAllByParam(incParam, stopWord);
+    public List<DBObject> getObjects(Map<String, String[]> incParam, String stopWord) {
+        return objectsDAO.getAllByParam(incParam, stopWord);
     }
 
-    public void addCourse(Map<String, String[]> incParam) {
-        coursesDAO.addObject(incParam);
+    public void addObject(Map<String, String[]> incParam) {
+        objectsDAO.addObject(incParam);
     }
 
-    public void delCourse(Map<String, String[]> incParam) {
-        coursesDAO.deleteObjectById(Integer.parseInt(incParam.get("id")[0]));
+    public void delObject(Map<String, String[]> incParam) {
+        objectsDAO.deleteObjectById(Integer.parseInt(incParam.get("id")[0]));
     }
 
-    public void updateCourse(Map<String, String[]> incParam) {
-        coursesDAO.updateObject(incParam);
+    public void updateObject(Map<String, String[]> incParam) {
+        objectsDAO.updateObject(incParam);
     }
 }

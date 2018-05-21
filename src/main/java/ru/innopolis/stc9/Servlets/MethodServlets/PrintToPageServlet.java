@@ -3,8 +3,7 @@ package ru.innopolis.stc9.Servlets.MethodServlets;
 import org.apache.log4j.Logger;
 import ru.innopolis.stc9.Servlets.ConstantContainer;
 import ru.innopolis.stc9.pojo.DBObject;
-import ru.innopolis.stc9.services.CourseService;
-import ru.innopolis.stc9.services.StudentService;
+import ru.innopolis.stc9.services.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,12 +14,11 @@ import java.util.List;
 
 public class PrintToPageServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(PrintToPageServlet.class);
-    private static CourseService courseService = new CourseService();
-    private static StudentService studentService = new StudentService();
+    private ObjectService objectService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath()+"/defaultmenu");
+        resp.sendRedirect(req.getContextPath() + "/defaultmenu");
     }
 
     @Override
@@ -29,31 +27,12 @@ public class PrintToPageServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/error?error_message=permissionError");
             return;
         }
+        objectService = CreateObjectService.create(req);
         req.setCharacterEncoding(ConstantContainer.UTF8);
         resp.setCharacterEncoding(ConstantContainer.UTF8);
-        List<DBObject> objects = listCreator(req);
+        List<DBObject> objects = objectService.getObjects(req.getParameterMap(), "methodType");
         req.setAttribute("objects", objects);
-        req.getRequestDispatcher(getDispatcherPath(req)).forward(req, resp);
-    }
-
-    private List<DBObject> listCreator(HttpServletRequest req) {
-        switch (req.getParameter("methodType")) {
-            case "courses_to_page":
-                return courseService.getCourses(req.getParameterMap(),"methodType");
-            case "students_to_page":
-                return studentService.getStudents(req.getParameterMap(),"methodType");
-        }
-        return null;
-    }
-
-    private String getDispatcherPath(HttpServletRequest req) {
-        switch (req.getParameter("methodType")) {
-            case "courses_to_page":
-                return "/method/get_courses_to_page.jsp";
-            case "students_to_page":
-                return "/method/get_students_to_page.jsp";
-        }
-        return null;
+        req.getRequestDispatcher("/method/" + req.getParameter("methodType") + ".jsp").forward(req, resp);
     }
 }
 

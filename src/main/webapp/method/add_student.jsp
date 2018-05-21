@@ -1,9 +1,5 @@
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String errorMsg = request.getParameter("error");
-    List<String> errors = (List<String>) request.getAttribute("errorMsg");
-%>
+<%@include file="../pieces/heade_error_init.jsp"%>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -36,16 +32,7 @@
         <input type="hidden" name="methodType" value="add_student">
         <input type="submit" name="Добавить студента">
     </form>
-    <br>
-    <%if ((errorMsg != null) && errorMsg.equals("true")) {%>
-    <b>
-        <%for (String s: errors) {%>
-        <%=s%>
-        <br>
-        <%}%>
-    </b>
-    <%}%>
-    <br>
+    <%@include file="../pieces/error_to_page.jsp"%>
     <i>Имя, фамилия и курс не должны быть пустыми, отчество может отсутствовать</i>
 </body>
 </html>

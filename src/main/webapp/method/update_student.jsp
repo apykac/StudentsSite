@@ -1,9 +1,5 @@
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String errorMsg = request.getParameter("error");
-    List<String> errors = (List<String>) request.getAttribute("errorMsg");
-%>
+<%@include file="../pieces/heade_error_init.jsp"%>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -47,18 +43,9 @@
     <input type="hidden" name="methodType" value="update_student">
     <input type="submit" name="Update">
 </form>
-<br>
-<%if ((errorMsg != null) && errorMsg.equals("true")) {%>
-<b>
-    <%for (String s: errors) {%>
-    <%=s%>
-    <br>
-    <%}%>
-</b>
-<%}%>
-<br>
+<%@include file="../pieces/error_to_page.jsp"%>
 <i>
-    Если ID курса будет ввдено не корректно или не существует, то обновления не произойдет
+    Если ID студента будет ввдено не корректно или не существует, то обновления не произойдет
     <br>
     Имя, фамилия и курс не должны быть пустыми, отчество может отсутствовать
 </i>

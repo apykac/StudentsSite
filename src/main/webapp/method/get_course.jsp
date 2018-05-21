@@ -17,7 +17,7 @@
                 <td><input type="text" name="name" id="course"></td>
             </tr>
         </table>
-        <input type="hidden" name="methodType" value="courses_to_page">
+        <input type="hidden" name="methodType" value="get_to_page_course">
         <input type="submit" name="Вывести курсы">
     </form>
     <br>
