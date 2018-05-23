@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Фильтр перевода пользователя на главные страницы в случае если пользователь пытает в строке браузера
+ * ввести не существующие URL
+ */
 public class MainPagesFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -15,6 +19,7 @@ public class MainPagesFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        if ((request == null) || (response == null) || (chain) == null) throw new IOException();
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         req.setCharacterEncoding(ConstantContainer.UTF8);

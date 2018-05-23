@@ -40,6 +40,7 @@ public class Course implements DBObject {
     @Override
     public Course getByResultSet(ResultSet resultSet) {
         Course course = new Course();
+        if (resultSet == null) return course;
         try {
             course.setId(resultSet.getInt("id"));
             course.setName(resultSet.getString("name"));
@@ -51,6 +52,7 @@ public class Course implements DBObject {
     @Override
     public Course getByParam(Map<String, String[]> incParam) {
         Course course = new Course();
+        if (incParam == null || incParam.isEmpty()) return course;
         if (incParam.get("id") != null) course.setId(Integer.parseInt(incParam.get("id")[0]));
         course.setName(incParam.get("name")[0]);
         return course;

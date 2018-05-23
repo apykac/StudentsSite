@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ДАО оценок
+ */
 public class MarksDAO implements ObjectsDAO {
     private DAOhelper helper = new DAOhelper();
     private static Logger logger = Logger.getLogger(MarksDAO.class);
@@ -21,6 +24,7 @@ public class MarksDAO implements ObjectsDAO {
 
     @Override
     public boolean addObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Start adding an \"mark\"");
         DBObject mark = helper.getByParam(incParam, new Mark());
         try (Connection connection = connectionManager.getConnection()) {
@@ -54,6 +58,7 @@ public class MarksDAO implements ObjectsDAO {
 
     @Override
     public boolean updateObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Start updating an \"mark\"");
         DBObject mark = helper.getByParam(incParam, new Mark());
         try (Connection connection = connectionManager.getConnection()) {
@@ -90,6 +95,8 @@ public class MarksDAO implements ObjectsDAO {
     @Override
     public List<DBObject> getAllByParam(Map<String, String[]> incParam, String stopWord) {
         List<DBObject> result = new ArrayList<>();
+        if ((incParam == null) || incParam.isEmpty() || (stopWord == null) || !incParam.containsKey(stopWord))
+            return result;
         logger.info("Getting an \"students\" by name");
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(rightSQLrequest(incParam, stopWord));
@@ -104,6 +111,7 @@ public class MarksDAO implements ObjectsDAO {
     }
 
     private String rightSQLrequest(Map<String, String[]> incParam, String stopWord) {
+        if ((incParam == null) || incParam.isEmpty()) return "";
         StringBuilder result = new StringBuilder("SELECT * FROM marks INNER JOIN lessons ON marks.lesson = lessons.id");
         boolean isBegin = true;
         for (Map.Entry<String, String[]> pair : incParam.entrySet()) {

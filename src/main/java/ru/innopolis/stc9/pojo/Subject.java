@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * сущность объект
+ */
 public class Subject implements DBObject{
     private int id;
     private String name;
@@ -73,6 +76,7 @@ public class Subject implements DBObject{
     @Override
     public Subject getByResultSet(ResultSet resultSet) {
         Subject subject = new Subject();
+        if (resultSet == null) return subject;
         try {
             subject.setId(resultSet.getInt("id"));
             subject.setName(resultSet.getString("name"));
@@ -86,6 +90,7 @@ public class Subject implements DBObject{
     @Override
     public Subject getByParam(Map<String, String[]> incParam) {
         Subject subject = new Subject();
+        if (incParam == null || incParam.isEmpty()) return subject;
         if (incParam.get("id") != null) subject.setId(Integer.parseInt(incParam.get("id")[0]));
         subject.setName(incParam.get("name")[0]);
         subject.setCourseId(Integer.parseInt(incParam.get("courseId")[0]));

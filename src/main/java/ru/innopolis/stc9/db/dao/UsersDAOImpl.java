@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * ДАО пользователей, нужен для авторизации на сайте
+ */
+
 public class UsersDAOImpl implements UsersDAO {
     private static Logger logger = Logger.getLogger(UsersDAOImpl.class);
     private static ConnectionManager connectionManager = ConnectionToStudentsDB.getInstance();
@@ -17,6 +21,7 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public User getUserByLogin(String login) {
         User user = null;
+        if ((login == null) || login.equals("")) return user;
         logger.info("Start to find users");
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT " +

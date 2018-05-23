@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * сущность оценка
+ */
 public class Mark implements DBObject{
     private int id;
     private int studentId;
@@ -94,6 +97,7 @@ public class Mark implements DBObject{
     @Override
     public Mark getByResultSet(ResultSet resultSet) {
         Mark mark = new Mark();
+        if (resultSet == null) return mark;
         try {
             mark.setId(resultSet.getInt("id"));
             mark.setStudentId(resultSet.getInt("student"));
@@ -109,6 +113,7 @@ public class Mark implements DBObject{
     @Override
     public Mark getByParam(Map<String, String[]> incParam) {
         Mark mark = new Mark();
+        if (incParam == null || incParam.isEmpty()) return mark;
         if (incParam.get("id") != null) mark.setId(Integer.parseInt(incParam.get("id")[0]));
         mark.setStudentId(Integer.parseInt(incParam.get("studentId")[0]));
         mark.setLessonId(Integer.parseInt(incParam.get("lessonId")[0]));

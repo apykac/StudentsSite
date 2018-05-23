@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ДАО студентов
+ */
 public class StudentsDAO implements ObjectsDAO {
     private DAOhelper helper = new DAOhelper();
     private static Logger logger = Logger.getLogger(StudentsDAO.class);
@@ -21,6 +24,7 @@ public class StudentsDAO implements ObjectsDAO {
 
     @Override
     public boolean addObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Start adding an \"student\"");
         DBObject student = helper.getByParam(incParam, new Student());
         try (Connection connection = connectionManager.getConnection()) {
@@ -54,6 +58,7 @@ public class StudentsDAO implements ObjectsDAO {
 
     @Override
     public boolean updateObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Updating adding an \"student\"");
         DBObject student = helper.getByParam(incParam, new Student());
         try (Connection connection = connectionManager.getConnection()) {
@@ -91,6 +96,8 @@ public class StudentsDAO implements ObjectsDAO {
     @Override
     public List<DBObject> getAllByParam(Map<String, String[]> incParam, String stopWord) {
         List<DBObject> result = new ArrayList<>();
+        if ((incParam == null) || incParam.isEmpty() || (stopWord == null) || !incParam.containsKey(stopWord))
+            return result;
         logger.info("Getting an \"students\" by name");
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE " +

@@ -16,6 +16,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            if ((req == null) || (resp == null)) throw new IOException();
             if ((req.getParameter("logout") != null) && req.getParameter("logout").equals("true")) {
                 req.getSession().invalidate();
                 resp.sendRedirect(req.getContextPath() + "/login");
@@ -37,6 +38,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            if ((req == null) || (resp == null)) throw new IOException();
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             String login = req.getParameter("userName");

@@ -14,6 +14,7 @@ public class ServiceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            if ((req == null) || (resp == null)) throw new IOException();
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             if ((Integer) req.getSession().getAttribute(ConstantContainer.ROLE) > 2) {
@@ -29,6 +30,7 @@ public class ServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if ((req == null) || (resp == null)) throw new IOException();
         doGet(req, resp);
     }
 }

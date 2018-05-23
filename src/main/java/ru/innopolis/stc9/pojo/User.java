@@ -1,5 +1,8 @@
 package ru.innopolis.stc9.pojo;
 
+/**
+ * сущность пользователь
+ */
 public class User {
     private int id;
     private String login;

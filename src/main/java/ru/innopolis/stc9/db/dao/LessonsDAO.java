@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ДАО уроков
+ */
 public class LessonsDAO implements ObjectsDAO {
     private DAOhelper helper = new DAOhelper();
     private static Logger logger = Logger.getLogger(LessonsDAO.class);
@@ -21,8 +24,9 @@ public class LessonsDAO implements ObjectsDAO {
 
     @Override
     public boolean addObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Start adding an \"lesson\"");
-        DBObject lesson = helper.getByParam(incParam,new Lesson());
+        DBObject lesson = helper.getByParam(incParam, new Lesson());
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO lessons VALUES (DEFAULT, ?, ?)");
             helper.statementSetter(statement, lesson, 2, false);
@@ -54,14 +58,15 @@ public class LessonsDAO implements ObjectsDAO {
 
     @Override
     public boolean updateObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Start updating an \"lesson\"");
-        DBObject lesson = helper.getByParam(incParam,new Lesson());
+        DBObject lesson = helper.getByParam(incParam, new Lesson());
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE lessons SET " +
                     "subject = ?, " +
                     "\"date\" = ? " +
                     "WHERE id = ?");
-            helper.statementSetter(statement,lesson,3,false);
+            helper.statementSetter(statement, lesson, 3, false);
             statement.addBatch();
             logger.info("Updating a \"lesson\" successfully");
             return statement.execute();
@@ -89,6 +94,8 @@ public class LessonsDAO implements ObjectsDAO {
     @Override
     public List<DBObject> getAllByParam(Map<String, String[]> incParam, String stopWord) {
         List<DBObject> result = new ArrayList<>();
+        if ((incParam == null) || incParam.isEmpty() || (stopWord == null) || !incParam.containsKey(stopWord))
+            return result;
         logger.info("Getting an \"lessons\" by name");
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM lessons");

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Фильтр проверки прав доступа поситителей на главные страницы сайта, определяет права доступа и перенаправляет на нужную страницу
+ */
 public class LoginValidFilter implements Filter {
     private static Logger logger = Logger.getLogger(LoginValidFilter.class);
 
@@ -19,9 +22,10 @@ public class LoginValidFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
         try {
+            if ((request == null) || (response == null) || (chain) == null) throw new IOException();
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpServletResponse resp = (HttpServletResponse) response;
             HttpSession httpSession = (req).getSession();
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);

@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * сущность студент
+ */
 public class Student implements DBObject {
     private int id;
     private String firstName;
@@ -95,6 +98,7 @@ public class Student implements DBObject {
     @Override
     public Student getByResultSet(ResultSet resultSet) {
         Student student = new Student();
+        if (resultSet == null) return student;
         try {
             student.setId(resultSet.getInt("id"));
             student.setFirstName(resultSet.getString("firstName"));
@@ -110,6 +114,7 @@ public class Student implements DBObject {
     @Override
     public Student getByParam(Map<String, String[]> incParam) {
         Student student = new Student();
+        if (incParam == null || incParam.isEmpty()) return student;
         if (incParam.get("id") != null) student.setId(Integer.parseInt(incParam.get("id")[0]));
         student.setFirstName(incParam.get("firstName")[0]);
         student.setSecondName(incParam.get("secondName")[0]);

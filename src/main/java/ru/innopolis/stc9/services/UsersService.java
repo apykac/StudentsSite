@@ -7,12 +7,16 @@ import ru.innopolis.stc9.pojo.User;
 
 import java.sql.SQLException;
 
+/**
+ * сервис клиентов
+ */
 public class UsersService {
     private static Logger logger = Logger.getLogger(UsersService.class);
     private static UsersDAO usersDao = new UsersDAOImpl();
 
     public int checkAuth(String login, String password) {
         User user = null;
+        if ((login == null) || login.equals("") || (password == null) || password.equals("")) return -1;
         try {
             user = usersDao.getUserByLogin(login);
         } catch (SQLException e) {

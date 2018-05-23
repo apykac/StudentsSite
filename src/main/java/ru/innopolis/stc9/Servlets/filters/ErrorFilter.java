@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Фильтр ошибок, перенаправляет запросы ошибок на страницу ошибок
+ */
 public class ErrorFilter implements Filter {
     private static Logger logger = Logger.getLogger(ErrorFilter.class);
 
@@ -18,9 +21,10 @@ public class ErrorFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain){
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
         try {
+            if ((request == null) || (response == null) || (chain) == null) throw new IOException();
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpServletResponse resp = (HttpServletResponse) response;
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             req.getRequestDispatcher(

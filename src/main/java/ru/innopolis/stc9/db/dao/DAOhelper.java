@@ -1,6 +1,5 @@
 package ru.innopolis.stc9.db.dao;
 
-import com.sun.javafx.collections.MappingChange;
 import org.apache.log4j.Logger;
 import ru.innopolis.stc9.pojo.DBObject;
 
@@ -19,14 +18,17 @@ public class DAOhelper {
     }
 
     public DBObject getByParam(Map<String, String[]> incParam, DBObject object) {
+        if ((incParam == null) || incParam.isEmpty() || object == null) return null;
         return object.getByParam(incParam);
     }
 
     public DBObject getByResultSet(ResultSet resultSet, DBObject object) {
+        if ((resultSet == null) || (object == null)) return null;
         return object.getByResultSet(resultSet);
     }
 
     public void statementSetter(PreparedStatement statement, DBObject object, int length, boolean isOrdred) {
+        if ((statement == null) || (object == null) || (length < 0)) return;
         int count = 1;
         for (Object[] pair : object.getDBOMethods(false)) {
             if (length == 0) break;
@@ -43,6 +45,8 @@ public class DAOhelper {
 
     public void simpleStatementSetter(PreparedStatement statement, DBObject object, Map<String, String[]> incParam,
                                       String stopWord, boolean isPattern) {
+        if ((statement == null) || (object == null) || (incParam == null) || incParam.isEmpty() || (stopWord == null) || incParam.isEmpty())
+            return;
         Map<String, TypeOfGetSet> typeOfGetSetMap = object.getParamMap();
         int count = 1;
         for (Map.Entry<String, String[]> pair : incParam.entrySet()) {
@@ -53,6 +57,7 @@ public class DAOhelper {
     }
 
     public void setting(PreparedStatement statement, int count, TypeOfGetSet type, Object o, boolean isPattern) {
+        if ((statement == null) || (count < 0) || (o == null)) return;
         try {
             switch (type) {
                 case DATE:

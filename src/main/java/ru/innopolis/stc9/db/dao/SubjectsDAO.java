@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ДАО предметов
+ */
 public class SubjectsDAO implements ObjectsDAO {
     private DAOhelper helper = new DAOhelper();
     private static Logger logger = Logger.getLogger(SubjectsDAO.class);
@@ -21,6 +24,7 @@ public class SubjectsDAO implements ObjectsDAO {
 
     @Override
     public boolean addObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         DBObject subject = helper.getByParam(incParam, new Subject());
         logger.info("Start adding an \"subject\"");
         try (Connection connection = connectionManager.getConnection()) {
@@ -54,6 +58,7 @@ public class SubjectsDAO implements ObjectsDAO {
 
     @Override
     public boolean updateObject(Map<String, String[]> incParam) {
+        if ((incParam == null) || incParam.isEmpty()) return false;
         logger.info("Start updating an \"subject\"");
         DBObject subject = helper.getByParam(incParam, new Subject());
         try (Connection connection = connectionManager.getConnection()) {
@@ -89,6 +94,8 @@ public class SubjectsDAO implements ObjectsDAO {
     @Override
     public List<DBObject> getAllByParam(Map<String, String[]> incParam, String stopWord) {
         List<DBObject> result = new ArrayList<>();
+        if ((incParam == null) || incParam.isEmpty() || (stopWord == null) || !incParam.containsKey(stopWord))
+            return result;
         logger.info("Getting an \"subject\" by name");
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM subjects WHERE \"name\" LIKE ?");

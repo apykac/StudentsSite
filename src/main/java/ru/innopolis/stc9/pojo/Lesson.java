@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Ссущность урок
+ */
 public class Lesson implements DBObject {
     private int id;
     private int subjectId;
@@ -76,6 +79,7 @@ public class Lesson implements DBObject {
     @Override
     public Lesson getByResultSet(ResultSet resultSet) {
         Lesson lesson = new Lesson();
+        if(resultSet == null) return lesson;
         try {
             lesson.setId(resultSet.getInt("id"));
             lesson.setSubjectId(resultSet.getInt("subject"));
@@ -89,9 +93,10 @@ public class Lesson implements DBObject {
 
     @Override
     public Lesson getByParam(Map<String, String[]> incParam) {
+        Lesson lesson = new Lesson();
+        if (incParam == null || incParam.isEmpty()) return lesson;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsed;
-        Lesson lesson = new Lesson();
         try {
             if (incParam.get("id") != null) lesson.setId(Integer.parseInt(incParam.get("id")[0]));
             lesson.setSubjectId(Integer.parseInt(incParam.get("subjectId")[0]));

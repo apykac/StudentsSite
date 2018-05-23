@@ -14,6 +14,7 @@ public class DefaultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            if ((req == null) || (resp == null)) throw new IOException();
             req.setCharacterEncoding(ConstantContainer.UTF8);
             resp.setCharacterEncoding(ConstantContainer.UTF8);
             HttpSession httpSession = req.getSession();
