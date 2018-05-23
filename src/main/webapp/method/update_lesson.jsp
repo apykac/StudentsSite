@@ -10,19 +10,15 @@
 <%@include file="../pieces/logout_panel.jsp"%> <%@include file="../pieces/back_to_menu.jsp"%>
 <br>
 <br>
-<form action="${pageContext.request.contextPath}/method/add_data" method="post">
+<form action="${pageContext.request.contextPath}/method/update_data" method="post">
     <table>
         <tr>
             <td><label for="subjectId">ID предмета</label></td>
             <td><input type="text" name="subjectId" id="subjectId"></td>
         </tr>
         <tr>
-            <td><label for="begin">Начало урока</label></td>
-            <td><input type="date" name="begin" id="begin"></td>
-        </tr>
-        <tr>
-            <td><label for="end">Конец урока</label></td>
-            <td><input type="date" name="end" id="end"></td>
+            <td><label for="date">Дата урока</label></td>
+            <td><input type="date" name="date" id="date"></td>
         </tr>
     </table>
     <br>
@@ -30,12 +26,12 @@
     <br>
     <table>
         <tr>
-            <td><label for="id">ID изменяемого Студента</label></td>
+            <td><label for="id">ID изменяемого Урока</label></td>
             <td><input type="text" name="id" id="id"></td>
         </tr>
     </table>
     <input type="hidden" name="methodType" value="update_lesson">
-    <input type="submit" name="Добавить урок">
+    <input type="submit" name="Обновить урок">
 </form>
 <%@include file="../pieces/error_to_page.jsp"%>
 <i>

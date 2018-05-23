@@ -110,8 +110,8 @@ public class Mark implements DBObject{
     public Mark getByParam(Map<String, String[]> incParam) {
         Mark mark = new Mark();
         if (incParam.get("id") != null) mark.setId(Integer.parseInt(incParam.get("id")[0]));
-        mark.setStudentId(Integer.parseInt(incParam.get("student")[0]));
-        mark.setLessonId(Integer.parseInt(incParam.get("lesson")[0]));
+        mark.setStudentId(Integer.parseInt(incParam.get("studentId")[0]));
+        mark.setLessonId(Integer.parseInt(incParam.get("lessonId")[0]));
         mark.setValue(Integer.parseInt(incParam.get("value")[0]));
         return mark;
     }

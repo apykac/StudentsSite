@@ -64,7 +64,7 @@ public class Subject implements DBObject{
     public List<Object[]> getDBOMethods(boolean isOrdered) {
         List<Object[]> result = new ArrayList<>();
         if (isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
-        result.add(new Object[]{"name", TypeOfGetSet.STRING});
+        result.add(new Object[]{"getName", TypeOfGetSet.STRING});
         result.add(new Object[]{"getCourseId", TypeOfGetSet.INTEGER});
         if (!isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
         return result;
@@ -75,6 +75,7 @@ public class Subject implements DBObject{
         Subject subject = new Subject();
         try {
             subject.setId(resultSet.getInt("id"));
+            subject.setName(resultSet.getString("name"));
             subject.setCourseId(resultSet.getInt("course"));
             subject.setCourse(new CoursesDAO().getObjectById(subject.getCourseId()));
         } catch (SQLException e) {

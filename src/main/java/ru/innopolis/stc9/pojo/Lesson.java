@@ -17,8 +17,7 @@ public class Lesson implements DBObject {
     private int id;
     private int subjectId;
     private Subject subject;
-    private Date begin;
-    private Date end;
+    private Date date;
 
     public Lesson() {
     }
@@ -47,20 +46,12 @@ public class Lesson implements DBObject {
         this.subject = subject;
     }
 
-    public Date getBegin() {
-        return begin;
+    public Date getDate() {
+        return date;
     }
 
-    public void setBegin(Date begin) {
-        this.begin = begin;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
@@ -68,8 +59,7 @@ public class Lesson implements DBObject {
         Map<String, TypeOfGetSet> result = new HashMap<>();
         result.put("id", TypeOfGetSet.INTEGER);
         result.put("subject", TypeOfGetSet.INTEGER);
-        result.put("begin", TypeOfGetSet.DATE);
-        result.put("end", TypeOfGetSet.DATE);
+        result.put("date", TypeOfGetSet.DATE);
         return result;
     }
 
@@ -78,8 +68,7 @@ public class Lesson implements DBObject {
         List<Object[]> result = new ArrayList<>();
         if (isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
         result.add(new Object[]{"getSubjectId", TypeOfGetSet.INTEGER});
-        result.add(new Object[]{"getBegin", TypeOfGetSet.DATE});
-        result.add(new Object[]{"getEnd", TypeOfGetSet.DATE});
+        result.add(new Object[]{"getDate", TypeOfGetSet.DATE});
         if (!isOrdered) result.add(new Object[]{"getId", TypeOfGetSet.INTEGER});
         return result;
     }
@@ -90,8 +79,7 @@ public class Lesson implements DBObject {
         try {
             lesson.setId(resultSet.getInt("id"));
             lesson.setSubjectId(resultSet.getInt("subject"));
-            lesson.setBegin(resultSet.getDate("begin"));
-            lesson.setEnd(resultSet.getDate("end"));
+            lesson.setDate(resultSet.getDate("date"));
             lesson.setSubject(new SubjectsDAO().getObjectById(lesson.subjectId));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,16 +89,14 @@ public class Lesson implements DBObject {
 
     @Override
     public Lesson getByParam(Map<String, String[]> incParam) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd/HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsed;
         Lesson lesson = new Lesson();
         try {
             if (incParam.get("id") != null) lesson.setId(Integer.parseInt(incParam.get("id")[0]));
-            lesson.setSubjectId(Integer.parseInt(incParam.get("subject")[0]));
-            parsed = format.parse(incParam.get("begin")[0]);
-            lesson.setBegin(new Date(parsed.getTime()));
-            parsed = format.parse(incParam.get("end")[0]);
-            lesson.setEnd(new Date(parsed.getTime()));
+            lesson.setSubjectId(Integer.parseInt(incParam.get("subjectId")[0]));
+            parsed = format.parse(incParam.get("date")[0]);
+            lesson.setDate(new Date(parsed.getTime()));
         } catch (ParseException e) {
             e.printStackTrace();
         }

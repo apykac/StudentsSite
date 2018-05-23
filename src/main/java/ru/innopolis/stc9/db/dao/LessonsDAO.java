@@ -24,8 +24,8 @@ public class LessonsDAO implements ObjectsDAO {
         logger.info("Start adding an \"lesson\"");
         DBObject lesson = helper.getByParam(incParam,new Lesson());
         try (Connection connection = connectionManager.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO lessons VALUES (DEFAULT, ?, ?, ?)");
-            helper.statementSetter(statement, lesson, 3, false);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO lessons VALUES (DEFAULT, ?, ?)");
+            helper.statementSetter(statement, lesson, 2, false);
             statement.addBatch();
             logger.info("Adding a \"lesson\" successfully");
             return statement.execute();
@@ -59,10 +59,9 @@ public class LessonsDAO implements ObjectsDAO {
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE lessons SET " +
                     "subject = ?, " +
-                    "begin = ?, " +
-                    "\"end\" = ?" +
+                    "\"date\" = ? " +
                     "WHERE id = ?");
-            helper.statementSetter(statement,lesson,4,false);
+            helper.statementSetter(statement,lesson,3,false);
             statement.addBatch();
             logger.info("Updating a \"lesson\" successfully");
             return statement.execute();
@@ -90,16 +89,16 @@ public class LessonsDAO implements ObjectsDAO {
     @Override
     public List<DBObject> getAllByParam(Map<String, String[]> incParam, String stopWord) {
         List<DBObject> result = new ArrayList<>();
-        logger.info("Getting an \"students\" by name");
+        logger.info("Getting an \"lessons\" by name");
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM lessons");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) result.add(helper.getByResultSet(resultSet, new Lesson()));
         } catch (SQLException e) {
-            logger.info("Getting an \"students\" by name failed: " + e.getMessage(), e);
+            logger.info("Getting an \"lessons\" by name failed: " + e.getMessage(), e);
             return result;
         }
-        logger.info("Get all \"students\" by name successfully");
+        logger.info("Get all \"lessons\" by name successfully");
         return result;
     }
 }

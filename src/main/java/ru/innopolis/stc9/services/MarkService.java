@@ -13,7 +13,7 @@ public class MarkService implements ObjectService {
 
     public List<String> isCorrectData(Map<String, String[]> incParam) {
         List<String> result = new ArrayList<>();
-        int value = -1;
+        int value = 0;
         try {
             if (incParam.get("value") != null) value = Integer.parseInt(incParam.get("value")[0]);
             if ((value > 100) || (value < 0)) result.add("Invalid \"value\"");

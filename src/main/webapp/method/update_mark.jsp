@@ -10,7 +10,7 @@
 <%@include file="../pieces/logout_panel.jsp"%> <%@include file="../pieces/back_to_menu.jsp"%>
 <br>
 <br>
-<form action="${pageContext.request.contextPath}/method/add_data" method="post">
+<form action="${pageContext.request.contextPath}/method/update_data" method="post">
     <table>
         <tr>
             <td><label for="studentId">ID студета</label></td>
@@ -34,7 +34,7 @@
         </tr>
     </table>
     <input type="hidden" name="methodType" value="update_mark">
-    <input type="submit" name="Добавить оценку">
+    <input type="submit" name="Изменить оценку">
 </form>
 <%@include file="../pieces/error_to_page.jsp"%>
 <i>

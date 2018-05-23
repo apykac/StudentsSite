@@ -1,7 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="ru.innopolis.stc9.pojo.Lesson" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.innopolis.stc9.pojo.DBObject" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%List<DBObject> objects = (List<DBObject>) request.getAttribute("objects");%>
 <html>
 <head>
@@ -18,15 +18,13 @@
     <tr>
         <th>ID</th>
         <th>Название предмета</th>
-        <th>Начало урока</th>
-        <th>Конец урока</th>
+        <th>Дата урока</th>
     </tr>
     <%for (DBObject lesson: objects) {%>
     <tr>
         <td><%=((Lesson)lesson).getId()%></td>
         <td>(<%=((Lesson)lesson).getSubjectId()%>) <%if (((Lesson)lesson).getSubject()!=null) {%><%=((Lesson)lesson).getSubject().getName()%><%}%></td>
-        <td><%=((Lesson)lesson).getBegin()%></td>
-        <td><%=((Lesson)lesson).getEnd()%></td>
+        <td><%=((Lesson)lesson).getDate()%></td>
     </tr>
     <%}%>
 </table>

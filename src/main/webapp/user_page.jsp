@@ -9,8 +9,7 @@
     <p>Выберите желаемое действие:</p>
     <ul>
         <li><a href="${pageContext.request.contextPath}/method?method=get_students">Вывод стедентов по ФИО (если нет данных то выведуться все студенты)</a></li>
-        <li><a href="#allmarksByName">Вывод оценок конекретного Студента</a></li>
-        <li><a href="#allmarksByNameinPeriod">Вывод оценок конкретного Студента в выбранный промежуток</a></li>
+        <li><a href="${pageContext.request.contextPath}/method?method=get_mark">Вывод оценок</a></li>
     </ul>
 </body>
 </html>

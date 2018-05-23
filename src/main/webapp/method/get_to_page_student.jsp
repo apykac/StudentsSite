@@ -1,7 +1,7 @@
 <%@ page import="ru.innopolis.stc9.pojo.Student" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.innopolis.stc9.pojo.DBObject" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%List<DBObject> objects = (List<DBObject>) request.getAttribute("objects");%>
 <html>
 <head>

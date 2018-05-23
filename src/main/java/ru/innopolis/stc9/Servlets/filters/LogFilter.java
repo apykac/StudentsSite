@@ -1,6 +1,7 @@
 package ru.innopolis.stc9.Servlets.filters;
 
 import org.apache.log4j.Logger;
+import ru.innopolis.stc9.Servlets.ConstantContainer;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,8 @@ public class LogFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         logger.info("Servlet Path: " + req.getServletPath() +" @ URL: "+ req.getRequestURL());
         try {
+            request.setCharacterEncoding(ConstantContainer.UTF8);
+            response.setCharacterEncoding(ConstantContainer.UTF8);
             chain.doFilter(request,response);
         } catch (IOException|ServletException e) {
             logger.error(e.getMessage());

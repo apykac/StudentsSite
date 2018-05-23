@@ -55,14 +55,14 @@ public class MarksDAO implements ObjectsDAO {
     @Override
     public boolean updateObject(Map<String, String[]> incParam) {
         logger.info("Start updating an \"mark\"");
-        DBObject mark = helper.getByParam(incParam,new Mark());
+        DBObject mark = helper.getByParam(incParam, new Mark());
         try (Connection connection = connectionManager.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE marks SET " +
                     "student = ?, " +
                     "lesson = ?, " +
                     "value = ?" +
                     "WHERE id = ?");
-            helper.statementSetter(statement,mark,4,false);
+            helper.statementSetter(statement, mark, 4, false);
             statement.addBatch();
             logger.info("Updating a \"mark\" successfully");
             return statement.execute();
@@ -92,7 +92,7 @@ public class MarksDAO implements ObjectsDAO {
         List<DBObject> result = new ArrayList<>();
         logger.info("Getting an \"students\" by name");
         try (Connection connection = connectionManager.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM marks");
+            PreparedStatement statement = connection.prepareStatement(rightSQLrequest(incParam, stopWord));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) result.add(helper.getByResultSet(resultSet, new Mark()));
         } catch (SQLException e) {
@@ -101,5 +101,35 @@ public class MarksDAO implements ObjectsDAO {
         }
         logger.info("Get all \"students\" by name successfully");
         return result;
+    }
+
+    private String rightSQLrequest(Map<String, String[]> incParam, String stopWord) {
+        StringBuilder result = new StringBuilder("SELECT * FROM marks INNER JOIN lessons ON marks.lesson = lessons.id");
+        boolean isBegin = true;
+        for (Map.Entry<String, String[]> pair : incParam.entrySet()) {
+            if (pair.getKey().equals(stopWord)) break;
+            if (isBegin) {
+                if (!pair.getValue()[0].equals("")) {
+                    result.append(" WHERE " + kindOfParam(pair.getKey()) + "'" + pair.getValue()[0] + "'");
+                    isBegin = false;
+                }
+                continue;
+            }
+            if (!pair.getValue()[0].equals("")) {
+                result.append(" AND " + kindOfParam(pair.getKey()) + "'" + pair.getValue()[0] + "'");
+            }
+        }
+        return result.toString();
+    }
+
+    private String kindOfParam(String param) {
+        if (param == null) return "";
+        switch (param) {
+            case "begin":
+                return "\"date\" >= ";
+            case "end":
+                return "\"date\" <= ";
+        }
+        return "\"" + param + "\" = ";
     }
 }

@@ -1,7 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="ru.innopolis.stc9.pojo.Mark" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.innopolis.stc9.pojo.DBObject" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%List<DBObject> objects = (List<DBObject>) request.getAttribute("objects");%>
 <html>
 <head>
@@ -25,7 +25,7 @@
     <tr>
         <td><%=((Mark)mark).getId()%></td>
         <td>(<%=((Mark)mark).getStudentId()%>) <%if (((Mark)mark).getStudent()!=null) {%><%=((Mark)mark).getStudent().getSecondName()%> <%=((Mark)mark).getStudent().getFirstName()%> <%=((Mark)mark).getStudent().getMiddleName()%><%}%></td>
-        <td>(<%=((Mark)mark).getLessonId()%>) <%if (((Mark)mark).getLesson()!=null) {%>[<%=((Mark)mark).getLesson().getSubjectId()%>] <%=((Mark)mark).getLesson().getSubject().getName()%> <%=((Mark)mark).getLesson().getBegin()%> / <%=((Mark)mark).getLesson().getEnd()%><%}%></td>
+        <td>{<%=((Mark)mark).getLesson().getDate()%>} (<%=((Mark)mark).getLessonId()%>) <%if (((Mark)mark).getLesson()!=null) {%>[<%=((Mark)mark).getLesson().getSubjectId()%>] <%=((Mark)mark).getLesson().getSubject().getName()%><%}%></td>
         <td><%=((Mark)mark).getValue()%></td>
     </tr>
     <%}%>

@@ -17,12 +17,8 @@
             <td><input type="text" name="subjectId" id="subjectId"></td>
         </tr>
         <tr>
-            <td><label for="begin">Начало урока</label></td>
-            <td><input type="date" name="begin" id="begin"></td>
-        </tr>
-        <tr>
-            <td><label for="end">Конец урока</label></td>
-            <td><input type="date" name="end" id="end"></td>
+            <td><label for="date">Дата урока</label></td>
+            <td><input type="date" name="date" id="date"></td>
         </tr>
     </table>
     <input type="hidden" name="methodType" value="add_lesson">

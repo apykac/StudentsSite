@@ -10,7 +10,7 @@
 <%@include file="../pieces/logout_panel.jsp"%> <%@include file="../pieces/back_to_menu.jsp"%>
 <br>
 <br>
-<form action="${pageContext.request.contextPath}/method/add_data" method="post">
+<form action="${pageContext.request.contextPath}/method/update_data" method="post">
     <table>
         <tr>
             <td><label for="name">Название предмета</label></td>
@@ -31,7 +31,7 @@
         </tr>
     </table>
     <input type="hidden" name="methodType" value="update_subject">
-    <input type="submit" name="Добавить предмет">
+    <input type="submit" name="Обновить предмет">
 </form>
 <%@include file="../pieces/error_to_page.jsp"%>
 <i>

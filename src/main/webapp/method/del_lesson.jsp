@@ -18,7 +18,7 @@
         </tr>
     </table>
     <input type="hidden" name="methodType" value="del_lesson">
-    <input type="submit" name="Удалить укрока">
+    <input type="submit" name="Удалить укрок">
 </form>
 <%@include file="../pieces/error_to_page.jsp"%>
 <i>ID урока должно быть не пустое и быть цифрой</i>

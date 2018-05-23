@@ -1,5 +1,5 @@
-<%@ page import="ru.innopolis.stc9.Servlets.ConstantContainer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="ru.innopolis.stc9.Servlets.ConstantContainer" %>
 <%request.getSession().setAttribute(ConstantContainer.ROLE, 3);%>
 <html>
 <head>

@@ -91,7 +91,7 @@ public class SubjectsDAO implements ObjectsDAO {
         List<DBObject> result = new ArrayList<>();
         logger.info("Getting an \"subject\" by name");
         try (Connection connection = connectionManager.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE \"name\" LIKE ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM subjects WHERE \"name\" LIKE ?");
             helper.simpleStatementSetter(statement, new Subject(), incParam, stopWord, true);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) result.add(helper.getByResultSet(resultSet, new Subject()));
